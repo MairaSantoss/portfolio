@@ -15,7 +15,7 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 .tech-glow { color:#ff8c00; text-shadow:0 0 14px rgba(255,78,205,.7); transition:0.3s; }
 
 /* MENU */
-.navbar { background: rgba(0,0,0,.7); transition:0.3s; }
+.navbar { background: rgb(20, 20, 20); transition:0.3s; }
 .navbar-light .nav-link { color:#fff; transition:0.3s; }
 .navbar-toggler-icon { filter:invert(1); }
 
@@ -44,7 +44,7 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 .glow-dot { position:absolute; width:10px; height:10px; background:#ff8c00; border-radius:50%; filter:blur(4px); }
 
 /* CARDS PROJETOS */
-.project-card { background:#111; border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px;      margin-top: 25px;
+.project-card { background:rgb(37 36 36 / 70%); border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px;      margin-top: 25px;
     margin-bottom: -6px;}
 .project-card:hover { transform:translateY(-6px); box-shadow:0 0 30px rgba(255, 94, 0, 0.484);}
 .projects-row { display:flex; overflow-x:auto; padding-bottom:15px; justify-content:left; }
@@ -53,8 +53,9 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 .project-desc { font-size:0.85rem; color:#ccc; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* MODAL */
-.modal-content { background:#0e0e0e; border-radius:20px; border:1px solid #333; box-shadow:0 0 40px rgba(255,78,205,.15); transition:0.3s;}
-.modal-header { border-bottom:none !important; display:flex; justify-content:space-between; align-items:center; }
+.modal-content { background:#0e0e0e; border-radius:20px; border:1px solid #333; box-shadow:0 0 40px rgba(255,78,205,.15); transition:0.3s; padding: 2px !important;}
+.modal-header { border-bottom:none !important; display:flex; justify-content:space-between; align-items:center; padding-top: 6px;
+ padding-bottom: 3px; }
 .modal-header .btn-close { filter:invert(1); transition:0.3s; }
 
 #modalImage {
@@ -63,10 +64,10 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
   width:auto;
   height:auto;
   object-fit:contain;
-  border-radius:12px;
+  /*border-radius:12px;*/
 }
 
-.modal-description { margin-top:15px; max-height:200px; overflow-y:auto; text-align:left; color:#ccc; }
+.modal-description { margin-top:15px; max-height:150px; overflow-y:auto; text-align:left; color:#ccc; padding: 7px;}
 
 /* MODAL BOTÕES */
 .modal-footer .btn { 
@@ -86,33 +87,71 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 .social-icons a:hover { color:#3d3838; }
 
 /* THEME BUTTON */
-#themeToggle { 
-  border:none; 
-  background: linear-gradient(135deg,#ff8c00,#7f00ff); 
-  padding:10px 25px; 
-  border-radius:25px; 
-  color:#fff; 
-  font-weight:600; 
-  cursor:pointer; 
-  transition:.3s; 
-  margin-top:15px; 
-}
-#themeToggle:hover { opacity:.85; }
+#themeToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 
-.titulomenu { color:#fff; }
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+
+  background: linear-gradient(135deg, #ffffff, #ff9900);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  cursor: pointer;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG */
+.icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.icon.active {
+  opacity: 1;
+}
+
+/* rotação DURANTE a troca */
+#themeToggle.spinning {
+  animation: spin .6s linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* tema claro */
+body.light-theme #themeToggle {
+  background: linear-gradient(135deg, #6c6c6c, #0e2354);
+}
+
+
+.titulomenu { color:#b8b8b8; }
 /* THEMES */
 .light-theme { background:#f5f5f5; color:#111; }
-.light-theme .navbar { background: rgba(255,255,255,0.9); }
+.light-theme .navbar { background: rgb(255, 255, 255); }
 .light-theme .navbar-light .nav-link { color:#111; }
 /* .light-theme .profile-pic { border:3px solid #ff80bf; box-shadow:0 0 30px rgba(255,128,191,.5); }*/
 .light-theme .modal-content { background:#fff; color:#111; border:1px solid #ccc; }
 
 .light-theme .social-icons a { color:#111; }
 .light-theme .titulomenu { color:#9f9f9f; }
-.light-theme #themeToggle { background: linear-gradient(135deg,#ff80bf,#ff8c00); }
 .light-theme .modal-footer .btn { background: linear-gradient(135deg,#ff80bf,#ff8c00); color:#fff; }
 .light-theme .modal-header .btn-close { filter: invert(0); }
-.light-theme .modal-description { margin-top:15px; max-height:200px; overflow-y:auto; text-align:left; color:#000; }
+.light-theme .modal-description { color:#000; }
 .light-theme .glow-dot  { display:none; }
 .light-theme .glow-circle { display:none; }
 .light-theme .tech-glow { color:#ff8c00; text-shadow:0 0 14px rgba(255, 255, 255, 0.7); transition:0.3s; }
@@ -138,7 +177,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
   .carousel img{height:auto;}
   
   .profile-pic{width:120px; height:120px;}
-  #modalImage{max-width:90vw; max-height:50vh;}
+  #modalImage{max-width:100%; max-height:50vh;}
 }
 </style>
 
@@ -156,7 +195,9 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#sobre">Sobre mim</a></li>
         <li class="nav-item"><a class="nav-link" href="#portfolio">Meus Projetos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>  
         <li class="nav-item"><a class="nav-link" href="#formacao">Formação</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experiencia">Experiência</a></li>     
         <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
       </ul>
     </div>
@@ -172,32 +213,64 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
   <div class="glow-dot" style="top:200px; right:80px;"></div>
   <div class="glow-dot" style="bottom:150px; left:100px;"></div>
   <div class="glow-dot" style="bottom:100px; right:150px;"></div>
-
-  
 </div>
 
 <!-- SOBRE -->
 <div class="container py-5 content" id="sobre" style="margin-top: 30px;">
   <img src="assets/maira.jpg" class="profile-pic">
   <h1 class="tech-glow">Olá, eu sou desenvolvedora</h1>
-  <p class="mt-3 col-md-8 mx-auto">
-    Desenvolvedora com foco em <strong>UX, landing pages e sistemas de dados</strong>.<br>
-    Transformo abstrações do mundo real em soluções digitais funcionais,<br>
-    com experiência em ambientes corporativos e industriais.
+  <p class="mt-3 col-md-8 mx-auto" style="text-align: justify;">
+    Dedicada a <strong>UX, landing pages, sistemas de dados e aplicativos mobile com React Native/Expo</strong>. Transformo ideias e abstrações do mundo real em soluções digitais funcionais, com experiência em ambientes corporativos e industriais.
   </p>
-  <button id="themeToggle">🌙 Tema</button>
+<button id="themeToggle" aria-label="Alternar tema">
+  <svg id="iconSun" viewBox="0 0 24 24" class="icon active">
+    <circle cx="12" cy="12" r="5"/>
+    <g stroke-width="2">
+      <line x1="12" y1="1" x2="12" y2="4"/>
+      <line x1="12" y1="20" x2="12" y2="23"/>
+      <line x1="1" y1="12" x2="4" y2="12"/>
+      <line x1="20" y1="12" x2="23" y2="12"/>
+      <line x1="4.5" y1="4.5" x2="6.8" y2="6.8"/>
+      <line x1="17.2" y1="17.2" x2="19.5" y2="19.5"/>
+      <line x1="17.2" y1="6.8" x2="19.5" y2="4.5"/>
+      <line x1="4.5" y1="19.5" x2="6.8" y2="17.2"/>
+    </g>
+  </svg>
+
+  <svg id="iconMoon" viewBox="0 0 24 24" class="icon">
+    <path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/>
+  </svg>
+ </button>
+
+  <div class="container py-1 "  >
+  </div>
+  <p class="mb-1"></p>
+    <a class="contact-btn"
+    href="https://wa.me/5518997322160?text=Oi%20Maíra"
+    target="_blank">
+    Falar no WhatsApp
+    </a>
+</div>
+
 </div>
 
 <!-- PORTFÓLIO -->
-<div class="container py-5" id="portfolio">
-  <h2 class="mb-4">Meus Projetos</h2>
-  <div class="projects-row mb-4" id="projectsRow1"></div>
+<div class="container py-3" id="portfolio" style="margin-top:-30px;">
+  <h2 class="mb-1">Meus Projetos</h2>
+  <div class="projects-row mb-3" id="projectsRow1"></div>
   <div class="projects-row" id="projectsRow2"></div>
 </div>
 
-<!-- HABILIDADES -->
-<h2 class="mt-5 mb-4">Habilidades</h2>
-<div class="row justify-content-center">
+<!-- SKILLS -->
+<div class="container py-5 " id="skills" >
+<h2 class="mb-3  text-center">Skills</h2>
+   <p class="mt-3 col-md-8 mx-auto" style="text-align: justify;">
+   Aqui você pode ver as linguagens e ferramentas que mais uso no meu trabalho. 
+    Cada fatia do gráfico representa o tempo e a frequência com que aplico cada tecnologia em meus projetos.
+  </p>
+</div>
+
+<div class="row justify-content-center" style="margin-bottom: 20px; margin-top: -20px;" >
   <div class="col-md-3">
     <canvas id="skillsChart"></canvas>
   </div>
@@ -215,18 +288,8 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
         <div class="card-body">
           <h5 class="card-title text-formacao"><i class="fas fa-university me-2"></i>Fatec Presidente Prudente</h5>
           <p class="card-text">Curso Superior de Tecnologia (CST) em <strong>Análise e Desenvolvimento de Sistemas</strong>
-        — <a href="https://drive.google.com/drive/folders/10lfBIsRrElgsRQ7stgCVujnuZsg2HrwY" target="_blank">certificado</a>
+        — <a href="https://drive.google.com/file/d/12CgYoKPgIWmtWM34eAa44hQns94OHTU8/view?usp=sharing" target="_blank">diploma</a>
         </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Etec -->
-    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-      <div class="card formacao-card">
-        <div class="card-body">
-          <h5 class="card-title text-formacao"><i class="fas fa-graduation-cap me-2"></i>Etec Profº Dr. Antônio Eufrásio de Toledo</h5>
-          <p class="card-text"><strong>Técnico em Administração</strong></p>
         </div>
       </div>
     </div>
@@ -243,13 +306,51 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
       </div>
     </div>
 
+    <!-- Etec -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="card formacao-card">
+        <div class="card-body">
+          <h5 class="card-title text-formacao"><i class="fas fa-graduation-cap me-2"></i>Etec Profº Dr. Antônio Eufrásio de Toledo</h5>
+          <p class="card-text"><strong>Técnico em Administração</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- EXPERIENCIA -->
+<div class="container py-2" id="experiencia">
+  <h2 class="mb-4 text-center">Experiência</h2>
+  
+  <div class="row justify-content-center g-4">
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="card formacao-card">
+        <div class="card-body">
+          <h5 class="card-title text-formacao"><i class="fas fa-briefcase me-2"></i>Analista Desenvolvimento de Sistemas Júnior</h5>
+          <p class="card-text"><strong>Vip Administração e Assessoria LTDA</strong> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="card formacao-card">
+        <div class="card-body">
+          <h5 class="card-title text-formacao"><i class="fas fa-briefcase me-2"></i>Programador de Sistemas de Informação</h5>
+          <p class="card-text"><strong>Infoss Sistemas para Internet LTDA</strong> </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <style>
 /* Cartões da Formação */
 .formacao-card {
-  background: rgb(26 26 26 / 70%);
+  background: rgb(37 36 36 / 70%);
   border-radius: 15px;
   padding: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -273,18 +374,20 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 
 
 <!-- CONTATO -->
-<div class="text-center mt-5" id="contato">
+  <div class="container py-5 " id="contato" >
+
+  </div>
   <h2>Vamos conversar?</h2>
-  <p class="mb-4">Disponível para projetos e freelas.</p>
+  <p class="mb-4"></p>
     <a class="contact-btn"
     href="https://wa.me/5518997322160?text=Oi%20Maíra"
     target="_blank">
     Falar no WhatsApp
     </a>
   <div class="social-icons">
-    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/ma%C3%ADra-graziela-dos-santos/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/MairaSantoss" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.instagram.com/dev.mairagraziela?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
   </div>
 </div>
 
@@ -298,7 +401,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
         <h4 id="modalTitle"></h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body d-flex justify-content-center align-items-center flex-column" style="overflow:auto;">
+      <div class="d-flex justify-content-center align-items-center flex-column" style="overflow:auto;">
         <img id="modalImage" src="">
         <div class="modal-description" id="modalDescription"></div>
       </div>
@@ -314,14 +417,62 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const projects = [
-  {title:"Projeto 1", description:"Descrição completa do Projeto 1 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto1/img1.png","assets/projeto1/img2.png"]},
-  {title:"Projeto 2", description:"Descrição completa do Projeto 2 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto2/img1.png","assets/projeto2/img2.png"]},
-  {title:"Projeto 3", description:"Descrição completa do Projeto 3 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto3/img1.png","assets/projeto3/img2.png", "assets/projeto3/img3.png"]},
-  {title:"Projeto 4", description:"Descrição completa do Projeto 4 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto4/img1.png","assets/projeto4/img2.png"]},
-  {title:"Projeto 5", description:"Descrição completa do Projeto 4 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", 
-  images:["assets/projeto5/img1.png","assets/projeto5/img2.png", "assets/projeto5/img3.png", "assets/projeto5/img4.png"]},
-  {title:"Projeto 6", description:"Descrição completa do Projeto 1 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto6/img1.png","assets/projeto6/img2.png"]},
+    {
+    title:"Ticket Service", 
+    description:`Agora ficou fácil organizar toda a demanda de serviços! O Ticket Service facilita a rotina de criadores e prestadores de serviços, oferecendo um Sistema Web e um Aplicativo que funciona online e offline.  
+    Com ele, é possível criar, executar e finalizar ordens de serviço, além de acompanhar todo o processo do início ao fim.
+    `, 
+    images:["assets/projeto5/img1.png","assets/projeto5/img2.png", "assets/projeto5/img3.png", "assets/projeto5/img4.png",  "assets/projeto5/img5.png",  "assets/projeto5/img6.png"]
+  },
+  {
+    title:"Promoção ARK3D", 
+    description:"O laboratório ARK3D, especializado na produção de próteses dentárias para clínicas e consultórios odontológicos, promoveu sua empresa e seus serviços por meio de uma página na internet. A ação atraiu novos clientes ao oferecer um crédito de R$ 400,00 para a primeira contratação.", 
+    images:["assets/projeto2/img1.png","assets/projeto2/img2.png"]
+  },
+  {
+    title:"Go Eventos", 
+    description:`A Go Eventos reúne, em um só lugar, as melhores opções de entretenimento da região — do show pago ao barzinho gratuito com música ao vivo.
+    O aplicativo conta com categorias como entretenimento infantil, esportes, feiras e eventos culturais. Além disso, oferece dois tipos de perfil: o do comerciante, que divulga seus eventos, e o do convidado, formado pelos potenciais clientes.`, 
+    images:["assets/projeto3/img1.png","assets/projeto3/img2.png", "assets/projeto3/img3.png"]
+  },
+  {
+    title:"App Gligose", 
+    description:`Aplicativo que permite o agendamento de atendimentos e a comunicação direta com pacientes. Ele exibe o histórico de agendamentos e armazena os registros de glicose, facilitando o acompanhamento da saúde ao longo do tempo. Desenvolvido especialmente para pessoas com diabetes que monitoram a glicose com frequência, o aplicativo ajuda a manter o controle, a organização e a continuidade do cuidado.`, 
+    images:["assets/projeto4/img1.png","assets/projeto4/img2.png"]
+  },
 
+  {
+    title:"Auto Escola", 
+    description:`Design de interface do Site, desenvolvido para uma auto escola. O site funciona como uma estratégia para expandir os canais de comunicação e marketing da empresa, além de aumentar a visibilidade nos resultados de pesquisa do Google. `, 
+    images:["assets/projeto6/img1.png","assets/projeto6/img2.png"]
+  },
+  {
+    title:"Meu TCC - Agrotec", 
+    description:`Um pouco das telas e funcionalidades do sistema que foi desenvolvido no meu TCC. A Rede Social é um módulo independente de um portfólio de sistema maior denominado Agrotec. O Agrotec é um ERP, que visa atender as necessidades da produção e comercialização de produtos da agropecuária, para isso, definiu-se três módulos: Rede Social, Produção e Marketplace. Meu foco de desenvolvimento foi a Rede Social, ela tem o intuito de integrar pessoas através da comunicação, prestação de serviços, compartilhamento de ideias e um auto marketing profissional.`, 
+    images:["assets/projeto7/img1.jpg","assets/projeto7/img2.jpg", "assets/projeto7/img3.jpg", "assets/projeto7/img4.jpg",  "assets/projeto7/img5.jpg",  "assets/projeto7/img6.jpg"]
+  },
+  {
+    title:"Cartão de Visita", 
+    description:`Cartão de visitas para a área da saúde`, 
+    images:["assets/projeto8/img1.jpg"]
+  },
+  {
+    title:"Anamnesis", 
+    description:`Design de interface de um aplicativo que realiza a triagem de sintomas e direciona o usuário para médicos especializados. O app também funciona como cartão de visitas digital dos médicos, fornecendo detalhes para contato de forma prática e rápida.`, 
+    images:["assets/projeto9/img1.jpg"]
+  },
+    {
+   title:"Caléndario", 
+   description:
+   `Calendário para gestão do tempo e organização, desenvolvido com a biblioteca JavaScript FullCalendar.
+    Destaques do projeto:
+    - Interface Intuitiva: navegue facilmente pelos meses, semanas e dias.
+    - Eventos Personalizados: crie, edite e exclua eventos diretamente no calendário.
+    - Design Responsivo: funciona perfeitamente em qualquer tamanho de tela.
+    - Integração Simples: fácil de implementar e manter.  
+    `, 
+   images:["assets/projeto1/img1.png","assets/projeto1/img2.png"]
+  }
 ];
 
 const row1 = document.getElementById("projectsRow1");
@@ -344,15 +495,38 @@ let currentImageIndex = 0;
 function openModal(i){
   currentProjectIndex = i;
   currentImageIndex = 0;
+  document.getElementById("themeToggle").style.display = "none";
   showModalImage();
   new bootstrap.Modal(document.getElementById("projectModal")).show();
 }
+
+
+const projectModal = document.getElementById("projectModal");
+projectModal.addEventListener("hidden.bs.modal", () => {
+  // aqui o modal JÁ fechou
+  document.getElementById("themeToggle").style.display = "flex"; 
+});
+
+
 
 function showModalImage(){
   const project = projects[currentProjectIndex];
   document.getElementById("modalImage").src = project.images[currentImageIndex];
   document.getElementById("modalTitle").innerText = project.title;
   document.getElementById("modalDescription").innerText = project.description;
+
+  const prevBtn = document.getElementById("prevImage");
+  const nextBtn = document.getElementById("nextImage");
+
+  // mostrar / esconder botões conforme quantidade de imagens
+    if (project.images.length <= 1) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+    } else {
+      prevBtn.style.display = "flex"; // ou "block"
+      nextBtn.style.display = "flex";
+    }
+
 }
 
 // Navegação dentro do modal
@@ -371,17 +545,50 @@ document.getElementById("nextImage").addEventListener("click", ()=>{
 new Chart(document.getElementById("skillsChart"), {
   type: 'pie',
   data: {
-    labels: ['HTML', 'CSS', 'JavaScript', 'UX/UI', 'PHP'],
-    datasets: [{data: [25,20,20,20,15], backgroundColor: ['#ff8c00','#7f00ff','#ff007a','#ff80bf','#a855f7']}]
+labels: [
+  'HTML / CSS',
+  'JavaScript / jQuery',
+  'C#',
+  'PHP',
+  'React Native (Expo)',
+  'SQL'
+],
+datasets: [{
+  data: [19, 30, 15, 11, 11, 15],
+  backgroundColor: [
+    '#E34F26', // HTML/CSS - laranja tech
+    '#F7DF1E', // JS - amarelo oficial
+    '#9B4F96', // C# - roxo Microsoft
+    '#777BB4', // PHP - azul arroxeado
+    '#61DAFB', // React - azul claro
+    '#2F855A'  // SQL - verde confiável
+  ]
+}]
+
   },
-  options: { plugins: { legend: { labels: { color: '#fff' } } } }
+  options: { plugins: { legend: { labels: { color: '#9f9f9f' } } } }
 });
 
 // Alternância de tema
-const themeToggle = document.getElementById("themeToggle");
-themeToggle.addEventListener("click", ()=>{
-  document.body.classList.toggle("light-theme");
-  themeToggle.textContent = document.body.classList.contains("light-theme")?"🌙 Tema":"☀️ Tema";
+const toggle = document.getElementById("themeToggle");
+const sun = document.getElementById("iconSun");
+const moon = document.getElementById("iconMoon");
+
+toggle.addEventListener("click", () => {
+  toggle.classList.add("spinning");
+
+  setTimeout(() => {
+    document.body.classList.toggle("light-theme");
+
+    const isLight = document.body.classList.contains("light-theme");
+
+    sun.classList.toggle("active", !isLight);
+    moon.classList.toggle("active", isLight);
+  }, 300); // troca no meio da rotação
+
+  setTimeout(() => {
+    toggle.classList.remove("spinning");
+  }, 600);
 });
 
 
@@ -391,12 +598,29 @@ const portfolio = document.getElementById('portfolio');
 window.addEventListener('scroll', () => {
   const portfolioTop = portfolio.getBoundingClientRect().top;
 
-  if (portfolioTop <= window.innerHeight * 0.3) {
+  if (portfolioTop <= window.innerHeight * 0.6) {
     bgEffects.classList.add('hidden');
   } else {
     bgEffects.classList.remove('hidden');
   }
 });
+
+
+
+document.addEventListener("click", function (event) {
+  const navMenu = document.getElementById("navMenu");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  // se o menu estiver aberto
+  if (navMenu.classList.contains("show")) {
+    // se clicou fora do menu e fora do botão
+    if (!navMenu.contains(event.target) && !toggler.contains(event.target)) {
+      const bsCollapse = new bootstrap.Collapse(navMenu);
+      bsCollapse.hide();
+    }
+  }
+});
+
 
 </script>
 </body>
