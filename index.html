@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Portfólio | Desenvolvedora</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+html, body { overflow-x:hidden; width:100%; transition:0.3s; text-align:center; }
+body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; font-family:'Segoe UI',sans-serif; }
+.tech-glow { color:#ff8c00; text-shadow:0 0 14px rgba(255,78,205,.7); transition:0.3s; }
+
+/* MENU */
+.navbar { background: rgba(0,0,0,.7); transition:0.3s; }
+.navbar-light .nav-link { color:#fff; transition:0.3s; }
+.navbar-toggler-icon { filter:invert(1); }
+
+/* PROFILE */
+.profile-pic { width:140px; height:140px; border-radius:50%; object-fit:cover; border:3px solid #ff8c00; /*box-shadow:0 0 30px rgba(255,78,205,.5);*/ margin:0 auto 20px auto; display:block; transition:0.3s; }
+
+/* BACKGROUND GLOWS */
+
+.background-effects {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+
+.background-effects.hidden {
+  opacity: 0;
+}
+
+
+.glow-circle { position:absolute; width:280px; height:280px; background: radial-gradient(circle, rgba(255,78,205,0.35), transparent 70%); filter:blur(40px); transition:0.3s;}
+.glow-1 { top:-80px; left:-80px; } .glow-2 { top:240px; right:-100px; }
+.glow-dot { position:absolute; width:10px; height:10px; background:#ff8c00; border-radius:50%; filter:blur(4px); }
+
+/* CARDS PROJETOS */
+.project-card { background:#111; border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px;      margin-top: 25px;
+    margin-bottom: -6px;}
+.project-card:hover { transform:translateY(-6px); box-shadow:0 0 30px rgba(255, 94, 0, 0.484);}
+.projects-row { display:flex; overflow-x:auto; padding-bottom:15px; justify-content:left; }
+.projects-row::-webkit-scrollbar { display:none; }
+.project-card img { border-radius:12px; height:160px; object-fit:cover; width:100%; }
+.project-desc { font-size:0.85rem; color:#ccc; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* MODAL */
+.modal-content { background:#0e0e0e; border-radius:20px; border:1px solid #333; box-shadow:0 0 40px rgba(255,78,205,.15); transition:0.3s;}
+.modal-header { border-bottom:none !important; display:flex; justify-content:space-between; align-items:center; }
+.modal-header .btn-close { filter:invert(1); transition:0.3s; }
+
+#modalImage {
+  max-width:70vw;
+  max-height:60vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+.modal-description { margin-top:15px; max-height:200px; overflow-y:auto; text-align:left; color:#ccc; }
+
+/* MODAL BOTÕES */
+.modal-footer .btn { 
+  background: linear-gradient(135deg,#ff8c00,#7f00ff); 
+  border:none; 
+  color:#fff; 
+  font-weight:600; 
+  border-radius:20px; 
+  transition:.3s; 
+}
+.modal-footer .btn:hover { opacity:.85; }
+
+/* CONTACT */
+.contact-btn { background: #10b908; padding:15px 30px; border-radius:30px; color:#fff; font-weight:600; text-decoration:none; margin:5px; display:inline-block; }
+.social-icons { margin-top:15px; }
+.social-icons a { margin:0 15px; font-size:28px; color:#fff; transition:.3s; }
+.social-icons a:hover { color:#3d3838; }
+
+/* THEME BUTTON */
+#themeToggle { 
+  border:none; 
+  background: linear-gradient(135deg,#ff8c00,#7f00ff); 
+  padding:10px 25px; 
+  border-radius:25px; 
+  color:#fff; 
+  font-weight:600; 
+  cursor:pointer; 
+  transition:.3s; 
+  margin-top:15px; 
+}
+#themeToggle:hover { opacity:.85; }
+
+.titulomenu { color:#fff; }
+/* THEMES */
+.light-theme { background:#f5f5f5; color:#111; }
+.light-theme .navbar { background: rgba(255,255,255,0.9); }
+.light-theme .navbar-light .nav-link { color:#111; }
+/* .light-theme .profile-pic { border:3px solid #ff80bf; box-shadow:0 0 30px rgba(255,128,191,.5); }*/
+.light-theme .modal-content { background:#fff; color:#111; border:1px solid #ccc; }
+
+.light-theme .social-icons a { color:#111; }
+.light-theme .titulomenu { color:#9f9f9f; }
+.light-theme #themeToggle { background: linear-gradient(135deg,#ff80bf,#ff8c00); }
+.light-theme .modal-footer .btn { background: linear-gradient(135deg,#ff80bf,#ff8c00); color:#fff; }
+.light-theme .modal-header .btn-close { filter: invert(0); }
+.light-theme .modal-description { margin-top:15px; max-height:200px; overflow-y:auto; text-align:left; color:#000; }
+.light-theme .glow-dot  { display:none; }
+.light-theme .glow-circle { display:none; }
+.light-theme .tech-glow { color:#ff8c00; text-shadow:0 0 14px rgba(255, 255, 255, 0.7); transition:0.3s; }
+.light-theme  .project-card { background:#f1d2ba; border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px; }
+.light-theme  .project-desc { font-size:0.85rem; color:#000000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.light-theme .text-formacao { color: #535353; }   
+.light-theme .formacao-card {
+  background:rgb(244 242 242 / 70%);
+  border-radius: 15px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff;
+}
+.light-theme .formacao-card:hover {
+  transform: translateY(-5px);
+  box-shadow: none;
+}
+/* FOOTER */
+footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
+
+/* RESPONSIVO */
+@media(max-width:800px){
+  .carousel img{height:auto;}
+  
+  .profile-pic{width:120px; height:120px;}
+  #modalImage{max-width:90vw; max-height:50vh;}
+}
+</style>
+
+</head>
+<body>
+
+<!-- MENU -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#"><span class="titulomenu">Maíra Graziela dos Santos</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre mim</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Meus Projetos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#formacao">Formação</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BACKGROUND DECORATIVO -->
+<div class="background-effects">
+  <div class="glow-circle glow-1"></div>
+  <div class="glow-circle glow-2"></div>
+
+  <div class="glow-dot" style="top:50px; left:30px;"></div>
+  <div class="glow-dot" style="top:200px; right:80px;"></div>
+  <div class="glow-dot" style="bottom:150px; left:100px;"></div>
+  <div class="glow-dot" style="bottom:100px; right:150px;"></div>
+
+  
+</div>
+
+<!-- SOBRE -->
+<div class="container py-5 content" id="sobre" style="margin-top: 30px;">
+  <img src="assets/maira.jpg" class="profile-pic">
+  <h1 class="tech-glow">Olá, eu sou desenvolvedora</h1>
+  <p class="mt-3 col-md-8 mx-auto">
+    Desenvolvedora com foco em <strong>UX, landing pages e sistemas de dados</strong>.<br>
+    Transformo abstrações do mundo real em soluções digitais funcionais,<br>
+    com experiência em ambientes corporativos e industriais.
+  </p>
+  <button id="themeToggle">🌙 Tema</button>
+</div>
+
+<!-- PORTFÓLIO -->
+<div class="container py-5" id="portfolio">
+  <h2 class="mb-4">Meus Projetos</h2>
+  <div class="projects-row mb-4" id="projectsRow1"></div>
+  <div class="projects-row" id="projectsRow2"></div>
+</div>
+
+<!-- HABILIDADES -->
+<h2 class="mt-5 mb-4">Habilidades</h2>
+<div class="row justify-content-center">
+  <div class="col-md-3">
+    <canvas id="skillsChart"></canvas>
+  </div>
+</div>
+
+<!-- FORMAÇÃO -->
+<div class="container py-5" id="formacao">
+  <h2 class="mb-4 text-center">Formação</h2>
+  
+  <div class="row justify-content-center g-4">
+
+    <!-- Fatec -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="card formacao-card">
+        <div class="card-body">
+          <h5 class="card-title text-formacao"><i class="fas fa-university me-2"></i>Fatec Presidente Prudente</h5>
+          <p class="card-text">Curso Superior de Tecnologia (CST) em <strong>Análise e Desenvolvimento de Sistemas</strong>
+        — <a href="https://drive.google.com/drive/folders/10lfBIsRrElgsRQ7stgCVujnuZsg2HrwY" target="_blank">certificado</a>
+        </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Etec -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="card formacao-card">
+        <div class="card-body">
+          <h5 class="card-title text-formacao"><i class="fas fa-graduation-cap me-2"></i>Etec Profº Dr. Antônio Eufrásio de Toledo</h5>
+          <p class="card-text"><strong>Técnico em Administração</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DevMedia -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+      <div class="card formacao-card">
+        <div class="card-body">
+          <h5 class="card-title text-formacao"><i class="fas fa-certificate me-2"></i>Plataforma DevMedia</h5>
+          <p class="card-text">
+            Conhecimento de desenvolvimento mobile com <strong>React Native</strong> — <a href="https://www.devmedia.com.br/certificado/tecnologia/react-native/maira-graziela-dos-santos" target="_blank">credencial</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+/* Cartões da Formação */
+.formacao-card {
+  background: rgb(26 26 26 / 70%);
+  border-radius: 15px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff;
+}
+
+/* Cores personalizadas */
+.card-text  { color: #848282; }      /* Vermelho elegante */
+ /* Azul moderno */
+.text-formacao { color: #ffffff; }   
+/* Ícones */
+.fas { vertical-align: middle; }
+
+/* Responsivo */
+@media(max-width:768px){
+  .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+}
+</style>
+
+
+
+
+<!-- CONTATO -->
+<div class="text-center mt-5" id="contato">
+  <h2>Vamos conversar?</h2>
+  <p class="mb-4">Disponível para projetos e freelas.</p>
+    <a class="contact-btn"
+    href="https://wa.me/5518997322160?text=Oi%20Maíra"
+    target="_blank">
+    Falar no WhatsApp
+    </a>
+  <div class="social-icons">
+    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+  </div>
+</div>
+
+<footer>© 2026 — Maíra Graziela dos Santos </footer>
+
+<!-- MODAL -->
+<div class="modal fade" id="projectModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h4 id="modalTitle"></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center flex-column" style="overflow:auto;">
+        <img id="modalImage" src="">
+        <div class="modal-description" id="modalDescription"></div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button class="btn btn-outline-light" id="prevImage">&laquo; Anterior</button>
+        <button class="btn btn-outline-light" id="nextImage">Próxima &raquo;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const projects = [
+  {title:"Projeto 1", description:"Descrição completa do Projeto 1 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto1/img1.png","assets/projeto1/img2.png"]},
+  {title:"Projeto 2", description:"Descrição completa do Projeto 2 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto2/img1.png","assets/projeto2/img2.png"]},
+  {title:"Projeto 3", description:"Descrição completa do Projeto 3 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto3/img1.png","assets/projeto3/img2.png", "assets/projeto3/img3.png"]},
+  {title:"Projeto 4", description:"Descrição completa do Projeto 4 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto4/img1.png","assets/projeto4/img2.png"]},
+  {title:"Projeto 5", description:"Descrição completa do Projeto 4 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", 
+  images:["assets/projeto5/img1.png","assets/projeto5/img2.png", "assets/projeto5/img3.png", "assets/projeto5/img4.png"]},
+  {title:"Projeto 6", description:"Descrição completa do Projeto 1 com detalhes importantes, explicando o que foi feito, tecnologias usadas e resultados obtidos.", images:["assets/projeto6/img1.png","assets/projeto6/img2.png"]},
+
+];
+
+const row1 = document.getElementById("projectsRow1");
+const row2 = document.getElementById("projectsRow2");
+
+projects.forEach((p,i)=>{
+  const shortDesc = p.description.length > 35 ? p.description.substring(0,35) + "…" : p.description;
+  const card = `<div class="project-card" onclick="openModal(${i})">
+    <img src="${p.images[0]}" alt="${p.title}">
+    <h6 class="mt-2">${p.title}</h6>
+    <p class="project-desc">${shortDesc}</p>
+  </div>`;
+  if(i<Math.ceil(projects.length/2)) row1.innerHTML += card;
+  else row2.innerHTML += card;
+});
+
+let currentProjectIndex = 0;
+let currentImageIndex = 0;
+
+function openModal(i){
+  currentProjectIndex = i;
+  currentImageIndex = 0;
+  showModalImage();
+  new bootstrap.Modal(document.getElementById("projectModal")).show();
+}
+
+function showModalImage(){
+  const project = projects[currentProjectIndex];
+  document.getElementById("modalImage").src = project.images[currentImageIndex];
+  document.getElementById("modalTitle").innerText = project.title;
+  document.getElementById("modalDescription").innerText = project.description;
+}
+
+// Navegação dentro do modal
+document.getElementById("prevImage").addEventListener("click", ()=>{
+  const project = projects[currentProjectIndex];
+  currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
+  showModalImage();
+});
+document.getElementById("nextImage").addEventListener("click", ()=>{
+  const project = projects[currentProjectIndex];
+  currentImageIndex = (currentImageIndex + 1) % project.images.length;
+  showModalImage();
+});
+
+// Chart de habilidades
+new Chart(document.getElementById("skillsChart"), {
+  type: 'pie',
+  data: {
+    labels: ['HTML', 'CSS', 'JavaScript', 'UX/UI', 'PHP'],
+    datasets: [{data: [25,20,20,20,15], backgroundColor: ['#ff8c00','#7f00ff','#ff007a','#ff80bf','#a855f7']}]
+  },
+  options: { plugins: { legend: { labels: { color: '#fff' } } } }
+});
+
+// Alternância de tema
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.addEventListener("click", ()=>{
+  document.body.classList.toggle("light-theme");
+  themeToggle.textContent = document.body.classList.contains("light-theme")?"🌙 Tema":"☀️ Tema";
+});
+
+
+
+const bgEffects = document.querySelector('.background-effects');
+const portfolio = document.getElementById('portfolio');
+window.addEventListener('scroll', () => {
+  const portfolioTop = portfolio.getBoundingClientRect().top;
+
+  if (portfolioTop <= window.innerHeight * 0.3) {
+    bgEffects.classList.add('hidden');
+  } else {
+    bgEffects.classList.remove('hidden');
+  }
+});
+
+</script>
+</body>
+</html>
