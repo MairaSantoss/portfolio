@@ -12,7 +12,7 @@
 <style>
 html, body { overflow-x:hidden; width:100%; transition:0.3s; text-align:center; }
 body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; font-family:'Segoe UI',sans-serif; }
-.tech-glow { color:#ff8c00; text-shadow:0 0 14px rgba(255,78,205,.7); transition:0.3s; }
+.tech-glow { color:#ff8c00; transition:0.3s; }
 
 /* MENU */
 .navbar { background: rgb(20, 20, 20); transition:0.3s; }
@@ -46,7 +46,7 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 /* CARDS PROJETOS */
 .project-card { background:rgb(37 36 36 / 70%); border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px;      margin-top: 25px;
     margin-bottom: -6px;}
-.project-card:hover { transform:translateY(-6px); box-shadow:0 0 30px rgba(255, 94, 0, 0.484);}
+.project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(255 255 255 / 36%);}
 .projects-row { display:flex; overflow-x:auto; padding-bottom:15px; justify-content:left; }
 .projects-row::-webkit-scrollbar { display:none; }
 .project-card img { border-radius:12px; height:160px; object-fit:cover; width:100%; }
@@ -154,8 +154,9 @@ body.light-theme #themeToggle {
 .light-theme .modal-description { color:#000; }
 .light-theme .glow-dot  { display:none; }
 .light-theme .glow-circle { display:none; }
-.light-theme .tech-glow { color:#ff8c00; text-shadow:0 0 14px rgba(255, 255, 255, 0.7); transition:0.3s; }
+.light-theme .tech-glow { color:#ff8c00;  transition:0.3s; }
 .light-theme  .project-card { background:#f1d2ba; border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px; }
+.light-theme .project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(116 84 61);;}
 .light-theme  .project-desc { font-size:0.85rem; color:#000000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .light-theme .text-formacao { color: #535353; }   
 .light-theme .formacao-card {
@@ -178,6 +179,29 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
   
   .profile-pic{width:120px; height:120px;}
   #modalImage{max-width:100%; max-height:50vh;}
+}
+
+
+
+/* Cartões da Formação */
+.formacao-card {
+  background: rgb(37 36 36 / 70%);
+  border-radius: 15px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff;
+}
+
+/* Cores personalizadas */
+.card-text  { color: #848282; }      /* Vermelho elegante */
+ /* Azul moderno */
+.text-formacao { color: #ffffff; }   
+/* Ícones */
+.fas { vertical-align: middle; }
+
+/* Responsivo */
+@media(max-width:768px){
+  .col-md-6 { flex: 0 0 100%; max-width: 100%; }
 }
 </style>
 
@@ -270,11 +294,16 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
   </p>
 </div>
 
-<div class="row justify-content-center" style="margin-bottom: 20px; margin-top: -20px;" >
-  <div class="col-md-3">
-    <canvas id="skillsChart"></canvas>
+<div class="container py-2" style="margin-top: -55px;">
+  <div class="row justify-content-center">
+    <div class="col-9 col-sm-8 col-md-6 col-lg-4">
+      <div class="chart-container" style="position: relative; width: 100%; height: 0; padding-bottom: 100%;">
+        <canvas id="skillsChart" style="position: absolute; top:0; left:0; width:100%; height:100%;"></canvas>
+      </div>
+    </div>
   </div>
 </div>
+
 
 <!-- FORMAÇÃO -->
 <div class="container py-5" id="formacao">
@@ -347,29 +376,6 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
   </div>
 </div>
 
-<style>
-/* Cartões da Formação */
-.formacao-card {
-  background: rgb(37 36 36 / 70%);
-  border-radius: 15px;
-  padding: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  color: #fff;
-}
-
-/* Cores personalizadas */
-.card-text  { color: #848282; }      /* Vermelho elegante */
- /* Azul moderno */
-.text-formacao { color: #ffffff; }   
-/* Ícones */
-.fas { vertical-align: middle; }
-
-/* Responsivo */
-@media(max-width:768px){
-  .col-md-6 { flex: 0 0 100%; max-width: 100%; }
-}
-</style>
-
 
 
 
@@ -403,7 +409,8 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
       </div>
       <div class="d-flex justify-content-center align-items-center flex-column" style="overflow:auto;">
         <img id="modalImage" src="">
-        <div class="modal-description" id="modalDescription"></div>
+        <span id="descricaoResetScroll">
+        </span>
       </div>
       <div class="modal-footer justify-content-between">
         <button class="btn btn-outline-light" id="prevImage">&laquo; Anterior</button>
@@ -415,7 +422,209 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+// === Projetos ===
+const projects = [
+    {
+    title:"Ticket Service", 
+    description:`Agora ficou fácil organizar toda a demanda de serviços! O Ticket Service facilita a rotina de criadores e prestadores de serviços, oferecendo um Sistema Web e um Aplicativo que funciona online e offline.  
+    Com ele, é possível criar, executar e finalizar ordens de serviço, além de acompanhar todo o processo do início ao fim.
+    `, 
+    images:["assets/projeto5/img1.png","assets/projeto5/img2.png", "assets/projeto5/img3.png", "assets/projeto5/img4.png",  "assets/projeto5/img5.png",  "assets/projeto5/img6.png"]
+  },
+  {
+    title:"Promoção ARK3D", 
+    description:"O laboratório ARK3D, especializado na produção de próteses dentárias para clínicas e consultórios odontológicos, promoveu sua empresa e seus serviços por meio de uma página na internet. A ação atraiu novos clientes ao oferecer um crédito de R$ 400,00 para a primeira contratação.", 
+    images:["assets/projeto2/img1.png","assets/projeto2/img2.png"]
+  },
+  {
+    title:"Go Eventos", 
+    description:`A Go Eventos reúne, em um só lugar, as melhores opções de entretenimento da região — do show pago ao barzinho gratuito com música ao vivo.
+    O aplicativo conta com categorias como entretenimento infantil, esportes, feiras e eventos culturais. Além disso, oferece dois tipos de perfil: o do comerciante, que divulga seus eventos, e o do convidado, formado pelos potenciais clientes.`, 
+    images:["assets/projeto3/img1.png","assets/projeto3/img2.png", "assets/projeto3/img3.png"]
+  },
+  {
+    title:"App Gligose", 
+    description:`Aplicativo que permite o agendamento de atendimentos e a comunicação direta com pacientes. Ele exibe o histórico de agendamentos e armazena os registros de glicose, facilitando o acompanhamento da saúde ao longo do tempo. Desenvolvido especialmente para pessoas com diabetes que monitoram a glicose com frequência, o aplicativo ajuda a manter o controle, a organização e a continuidade do cuidado.`, 
+    images:["assets/projeto4/img1.png","assets/projeto4/img2.png"]
+  },
+
+  {
+    title:"Auto Escola", 
+    description:`Design de interface do Site, desenvolvido para uma auto escola. O site funciona como uma estratégia para expandir os canais de comunicação e marketing da empresa, além de aumentar a visibilidade nos resultados de pesquisa do Google. `, 
+    images:["assets/projeto6/img1.png","assets/projeto6/img2.png"]
+  },
+  {
+    title:"Meu TCC - Agrotec", 
+    description:`Um pouco das telas e funcionalidades do sistema que foi desenvolvido no meu TCC. A Rede Social é um módulo independente de um portfólio de sistema maior denominado Agrotec. O Agrotec é um ERP, que visa atender as necessidades da produção e comercialização de produtos da agropecuária, para isso, definiu-se três módulos: Rede Social, Produção e Marketplace. Meu foco de desenvolvimento foi a Rede Social, ela tem o intuito de integrar pessoas através da comunicação, prestação de serviços, compartilhamento de ideias e um auto marketing profissional.`, 
+    images:["assets/projeto7/img1.jpg","assets/projeto7/img2.jpg", "assets/projeto7/img3.jpg", "assets/projeto7/img4.jpg",  "assets/projeto7/img5.jpg",  "assets/projeto7/img6.jpg"]
+  },
+  {
+    title:"Cartão de Visita", 
+    description:`Cartão de visitas para a área da saúde`, 
+    images:["assets/projeto8/img1.jpg"]
+  },
+  {
+    title:"Anamnesis", 
+    description:`Design de interface de um aplicativo que realiza a triagem de sintomas e direciona o usuário para médicos especializados. O app também funciona como cartão de visitas digital dos médicos, fornecendo detalhes para contato de forma prática e rápida.`, 
+    images:["assets/projeto9/img1.jpg"]
+  },
+    {
+   title:"Caléndario", 
+   description:
+   `Calendário para gestão do tempo e organização, desenvolvido com a biblioteca JavaScript FullCalendar.
+    Destaques do projeto:
+    - Interface Intuitiva: navegue facilmente pelos meses, semanas e dias.
+    - Eventos Personalizados: crie, edite e exclua eventos diretamente no calendário.
+    - Design Responsivo: funciona perfeitamente em qualquer tamanho de tela.
+    - Integração Simples: fácil de implementar e manter.  
+    `, 
+   images:["assets/projeto1/img1.png","assets/projeto1/img2.png"]
+  }
+];
+
+// === Criar cards de projetos ===
+const row1 = document.getElementById("projectsRow1");
+const row2 = document.getElementById("projectsRow2");
+
+projects.forEach((p, i) => {
+  const shortDesc = p.description.length > 35 ? p.description.substring(0,35) + "…" : p.description;
+  const card = `<div class="project-card" onclick="openModal(${i})">
+    <img src="${p.images[0]}" alt="${p.title}">
+    <h6 class="mt-2">${p.title}</h6>
+    <p class="project-desc">${shortDesc}</p>
+  </div>`;
+  if(i < Math.ceil(projects.length / 2)) row1.innerHTML += card;
+  else row2.innerHTML += card;
+});
+
+// === Modal ===
+let currentProjectIndex = 0;
+let currentImageIndex = 0;
+
+const projectModal = document.getElementById("projectModal");
+const modalBodyScroll = projectModal.querySelector(".modal-body-scroll"); // container do scroll
+const modalImage = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+//const modalDescription = document.getElementById("modalDescription");
+const prevBtn = document.getElementById("prevImage");
+const nextBtn = document.getElementById("nextImage");
+const themeToggle = document.getElementById("themeToggle");
+
+function openModal(i) {
+  currentProjectIndex = i;
+  currentImageIndex = 0;
+
+  // Ocultar botão de tema
+  themeToggle.style.display = "none";
+
+  showModalImage();
+
+  new bootstrap.Modal(projectModal).show();
+}
+
+function showModalImage() {
+  const project = projects[currentProjectIndex];
+  
+  document.getElementById("modalImage").src = project.images[currentImageIndex];
+  document.getElementById("modalTitle").innerText = project.title;
+ // document.getElementById("modalDescription").innerText = project.description;
+  
+  document.getElementById("descricaoResetScroll").innerHTML = `<div class="modal-description" id="modalDescription">${project.description}</div>`;
+
+  const prevBtn = document.getElementById("prevImage");
+  const nextBtn = document.getElementById("nextImage");
+
+  // mostrar / esconder botões conforme quantidade de imagens
+  if (project.images.length <= 1) {
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+  } else {
+    prevBtn.style.display = "flex";
+    nextBtn.style.display = "flex";
+  }
+
+}
+
+// Navegação entre imagens
+prevBtn.addEventListener("click", () => {
+  const project = projects[currentProjectIndex];
+  currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
+  showModalImage();
+});
+
+nextBtn.addEventListener("click", () => {
+  const project = projects[currentProjectIndex];
+  currentImageIndex = (currentImageIndex + 1) % project.images.length;
+  showModalImage();
+});
+
+// Mostrar botão de tema ao fechar modal
+projectModal.addEventListener("hidden.bs.modal", () => {
+  themeToggle.style.display = "flex";
+});
+
+// === Chart.js ===
+new Chart(document.getElementById("skillsChart"), {
+  type: 'pie',
+  data: {
+    labels: ['HTML / CSS','JavaScript / jQuery','C#','PHP','React Native (Expo)','SQL'],
+    datasets: [{
+      data: [19,30,15,11,11,15],
+      backgroundColor: ['#E34F26','#F7DF1E','#9B4F96','#777BB4','#61DAFB','#2F855A']
+    }]
+  },
+  options: { plugins: { legend: { labels: { color: '#9f9f9f' } } } }
+});
+
+// === Alternância de tema ===
+const toggle = document.getElementById("themeToggle");
+const sun = document.getElementById("iconSun");
+const moon = document.getElementById("iconMoon");
+
+toggle.addEventListener("click", () => {
+  toggle.classList.add("spinning");
+
+  setTimeout(() => {
+    document.body.classList.toggle("light-theme");
+    const isLight = document.body.classList.contains("light-theme");
+    sun.classList.toggle("active", !isLight);
+    moon.classList.toggle("active", isLight);
+  }, 300);
+
+  setTimeout(() => toggle.classList.remove("spinning"), 600);
+});
+
+const bgEffects = document.querySelector('.background-effects');
+const portfolio = document.getElementById('portfolio');
+window.addEventListener('scroll', () => {
+  const portfolioTop = portfolio.getBoundingClientRect().top;
+
+  if (portfolioTop <= window.innerHeight * 0.6) {
+    bgEffects.classList.add('hidden');
+  } else {
+    bgEffects.classList.remove('hidden');
+  }
+});
+
+
+document.addEventListener("click", function (event) {
+  const navMenu = document.getElementById("navMenu");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  // se o menu estiver aberto
+  if (navMenu.classList.contains("show")) {
+    // se clicou fora do menu e fora do botão
+    if (!navMenu.contains(event.target) && !toggler.contains(event.target)) {
+      const bsCollapse = new bootstrap.Collapse(navMenu);
+      bsCollapse.hide();
+    }
+  }
+});
+</script>
+
+<!--<script>
 const projects = [
     {
     title:"Ticket Service", 
@@ -622,6 +831,6 @@ document.addEventListener("click", function (event) {
 });
 
 
-</script>
+</script> -->
 </body>
 </html>
