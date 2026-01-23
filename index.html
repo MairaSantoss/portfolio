@@ -203,6 +203,11 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 @media(max-width:768px){
   .col-md-6 { flex: 0 0 100%; max-width: 100%; }
 }
+
+.navbar {
+    overflow-x: hidden !important;
+}
+
 </style>
 
 </head>
@@ -211,7 +216,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 <!-- MENU -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#"><span class="titulomenu">Maíra Graziela dos Santos</span></a>
+    <a class="navbar-brand text-white" href="#"><span class="titulomenu">Maíra Santos</span></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -621,6 +626,19 @@ document.addEventListener("click", function (event) {
       bsCollapse.hide();
     }
   }
+});
+
+const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+const navMenu = document.getElementById('navMenu');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    // Se o menu estiver aberto (colapsado), fecha ele
+    if (navMenu.classList.contains('show')) {
+      const bsCollapse = new bootstrap.Collapse(navMenu);
+      bsCollapse.hide();
+    }
+  });
 });
 </script>
 
