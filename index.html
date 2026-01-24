@@ -8,49 +8,57 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 html, body { overflow-x:hidden; width:100%; transition:0.3s; text-align:center; }
-body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; font-family:'Segoe UI',sans-serif; }
-.tech-glow { color:#ff8c00; transition:0.3s; }
-
+body { background: #000; color:#848282; font-family:'Segoe UI',sans-serif; }
+.tech-glow { color:#ff7500; transition:0.3s; }
+.olaEuSou {color:#fff; transition:0.3s;}
 /* MENU */
 .navbar { background: rgb(20, 20, 20); transition:0.3s; }
 .navbar-light .nav-link { color:#fff; transition:0.3s; }
 .navbar-toggler-icon { filter:invert(1); }
 
 /* PROFILE */
-.profile-pic { width:140px; height:140px; border-radius:50%; object-fit:cover; border:3px solid #ff8c00; /*box-shadow:0 0 30px rgba(255,78,205,.5);*/ margin:0 auto 20px auto; display:block; transition:0.3s; }
-
-/* BACKGROUND GLOWS */
-
-.background-effects {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 1;
-  transition: opacity .5s ease;
+.profile-wrapper {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto 20px auto;
 }
 
-.background-effects.hidden {
-  opacity: 0;
+.profile-pic {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #ff7500;
+  padding:3.5px;
+  display:block;
 }
 
-
-.glow-circle { position:absolute; width:280px; height:280px; background: radial-gradient(circle, rgba(255,78,205,0.35), transparent 70%); filter:blur(40px); transition:0.3s;}
-.glow-1 { top:-80px; left:-80px; } .glow-2 { top:240px; right:-100px; }
-.glow-dot { position:absolute; width:10px; height:10px; background:#ff8c00; border-radius:50%; filter:blur(4px); }
+/* bolinha centralizada sobre a borda */
+.status-dot {
+position: absolute;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #22c55e;
+    /* top: 0px; */
+    left: 80%;
+    transform: translate(-40%, -140%);
+    border: 3.5px solid #1a0f08;
+}
 
 /* CARDS PROJETOS */
+.project-titulo{text-align: left; color: #ffffff; margin-top: 12px !important;}
 .project-card { background:rgb(37 36 36 / 70%); border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px;      margin-top: 25px;
-    margin-bottom: -6px;}
+    margin-bottom: -6px; padding-bottom: 4px;}
 .project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(255 255 255 / 36%);}
 .projects-row { display:flex; overflow-x:auto; padding-bottom:15px; justify-content:left; }
 .projects-row::-webkit-scrollbar { display:none; }
 .project-card img { border-radius:12px; height:160px; object-fit:cover; width:100%; }
-.project-desc { font-size:0.85rem; color:#ccc; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.project-desc {     margin-top: -8px; font-size:0.85rem; color:#ccc; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* MODAL */
 .modal-content { background:#0e0e0e; border-radius:20px; border:1px solid #333; box-shadow:0 0 40px rgba(255,78,205,.15); transition:0.3s; padding: 2px !important;}
@@ -71,17 +79,37 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 
 /* MODAL BOTÕES */
 .modal-footer .btn { 
-  background: linear-gradient(135deg,#ff8c00,#7f00ff); 
   border:none; 
-  color:#fff; 
+  color:#fff;
   font-weight:600; 
   border-radius:20px; 
-  transition:.3s; 
+  background-color:#ff7500
 }
-.modal-footer .btn:hover { opacity:.85; }
 
 /* CONTACT */
 .contact-btn { background: #10b908; padding:15px 30px; border-radius:30px; color:#fff; font-weight:600; text-decoration:none; margin:5px; display:inline-block; }
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 26px;
+  border-radius: 999px;
+  background: #ff7500;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 500;
+  border: 1.5px solid  #ff7500;
+  transition: all 0.25s ease;
+}
+
+.btn-whatsapp i {
+  font-size: 16px;
+   color: #e5e7eb;
+; /* verde WhatsApp */
+}
+
+
 .social-icons { margin-top:15px; }
 .social-icons a { margin:0 15px; font-size:28px; color:#fff; transition:.3s; }
 .social-icons a:hover { color:#3d3838; }
@@ -89,11 +117,11 @@ body { background: radial-gradient(circle at top,#111 0%,#000 60%); color:#fff; 
 /* THEME BUTTON */
 #themeToggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 15px;
+  right: 15px;
 
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: none;
 
@@ -138,31 +166,77 @@ body.light-theme #themeToggle {
   background: linear-gradient(135deg, #6c6c6c, #0e2354);
 }
 
-
 .titulomenu { color:#b8b8b8; }
-/* THEMES */
-.light-theme { background:#f5f5f5; color:#111; }
-.light-theme .navbar { background: rgb(255, 255, 255); }
-.light-theme .navbar-light .nav-link { color:#111; }
-/* .light-theme .profile-pic { border:3px solid #ff80bf; box-shadow:0 0 30px rgba(255,128,191,.5); }*/
-.light-theme .modal-content { background:#fff; color:#111; border:1px solid #ccc; }
 
+
+
+.background-effects{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height: 450px;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:-1;
+  background: linear-gradient(to bottom, rgb(255 136 0 / 16%) 0%, transparent 100%);
+}
+
+/* Cartões da Formação */
+.formacao-card {
+  background: rgb(37 36 36 / 70%);
+  border-radius: 13px;
+  padding: 7px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  color: #fff;
+}
+
+/* Cores personalizadas */
+.card-text  { color: #848282; }      /* Vermelho elegante */
+ /* Azul moderno */
+.text-formacao { color: #ffffff; font-size: 18px;}   
+/* Ícones */
+.fas { vertical-align: middle; }
+
+
+.secaoTitulo{
+  text-align: center;
+
+        
+        font-weight: 700;
+        font-size: 19px;
+        color: #fff;
+        line-height: 2px;
+
+}
+
+.navbar {
+    overflow-x: hidden !important;
+}
+
+
+
+/* THEMES */
+.light-theme { background:#f5f5f5; color:#000; }
+.light-theme .navbar { background: rgb(255, 255, 255); }
+.light-theme .navbar-light .nav-link { color:#000; }
+.light-theme .secaoTitulo { color: #848484; }
+.light-theme .modal-content { background:#fff; color:#111; border:1px solid #ccc; }
+.light-theme .olaEuSou {color:#000;; transition:0.3s;}
 .light-theme .social-icons a { color:#111; }
-.light-theme .titulomenu { color:#9f9f9f; }
-.light-theme .modal-footer .btn { background: linear-gradient(135deg,#ff80bf,#ff8c00); color:#fff; }
+.light-theme .titulomenu { color:#7c7c7c; }
 .light-theme .modal-header .btn-close { filter: invert(0); }
 .light-theme .modal-description { color:#000; }
-.light-theme .glow-dot  { display:none; }
-.light-theme .glow-circle { display:none; }
-.light-theme .tech-glow { color:#ff8c00;  transition:0.3s; }
-.light-theme  .project-card { background:#f1d2ba; border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px; }
-.light-theme .project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(116 84 61);;}
-.light-theme  .project-desc { font-size:0.85rem; color:#000000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.light-theme .text-formacao { color: #535353; }   
+.light-theme .project-titulo { color:#000; }
+.light-theme  .project-card { background: rgb(244 242 242 / 70%);
+    border: 1px solid #c8c8c8;  }
+.light-theme .project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(150 150 150);}
+.light-theme  .project-desc { color:#000000;  }
+.light-theme .text-formacao { color: #444444; font-size: 18px; }   
 .light-theme .formacao-card {
   background:rgb(244 242 242 / 70%);
-  border-radius: 15px;
-  padding: 15px;
+  border-radius: 13px;
+  padding: 7px;
   transition: transform 0.3s, box-shadow 0.3s;
   color: #fff;
 }
@@ -170,8 +244,8 @@ body.light-theme #themeToggle {
   transform: translateY(-5px);
   box-shadow: none;
 }
-/* FOOTER */
-footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
+.light-theme .background-effects{  background: linear-gradient(to bottom, rgb(225 177 122) 0%, transparent 100%);}
+.light-theme .status-dot {    border: 3.5px solid #eecdab;}
 
 /* RESPONSIVO */
 @media(max-width:800px){
@@ -181,39 +255,32 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
   #modalImage{max-width:100%; max-height:50vh;}
 }
 
-
-
-/* Cartões da Formação */
-.formacao-card {
-  background: rgb(37 36 36 / 70%);
-  border-radius: 15px;
-  padding: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  color: #fff;
-}
-
-/* Cores personalizadas */
-.card-text  { color: #848282; }      /* Vermelho elegante */
- /* Azul moderno */
-.text-formacao { color: #ffffff; }   
-/* Ícones */
-.fas { vertical-align: middle; }
-
 /* Responsivo */
 @media(max-width:768px){
   .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+
+  .secaoTitulo{
+    text-align: left;
+  }
+
+      footer div {
+      flex-direction:column !important;
+      align-items:center !important;
+      text-align:center;
+    }
+
+
 }
 
-.navbar {
-    overflow-x: hidden !important;
-}
+
+
 
 </style>
 
 </head>
 <body>
 
-<!-- MENU -->
+<!-- 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="#"><span class="titulomenu">Maíra Santos</span></a>
@@ -232,67 +299,111 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
     </div>
   </div>
 </nav>
+MENU -->
 
 <!-- BACKGROUND DECORATIVO -->
 <div class="background-effects">
-  <div class="glow-circle glow-1"></div>
-  <div class="glow-circle glow-2"></div>
 
-  <div class="glow-dot" style="top:50px; left:30px;"></div>
-  <div class="glow-dot" style="top:200px; right:80px;"></div>
-  <div class="glow-dot" style="bottom:150px; left:100px;"></div>
-  <div class="glow-dot" style="bottom:100px; right:150px;"></div>
+  <!-- Ondas e curvas abstratas laranja -->
+  <div style="
+    position:absolute;
+    width:200%;
+    height:4px;
+    top:10px;
+    left:-50%;
+    background: linear-gradient(90deg, rgb(255 165 0 / 4%), rgba(255, 140, 0, 0.05));
+    border-radius:50%;
+    transform: rotate(15deg);
+    filter: blur(1px);
+  "></div>
+
+  <div style="
+    position:absolute;
+    width:180%;
+    height:2px;
+    top:50px;
+    left:-40%;
+    background: linear-gradient(90deg, rgb(255 165 0 / 4%), rgba(255, 140, 0, 0.05));
+    border-radius:50%;
+    transform: rotate(-7deg);
+    filter: blur(0.5px);
+  "></div>
+
+  <div style="
+    position:absolute;
+    width:160%;
+    height:2px;
+    top:100px;
+    left:-30%;
+    background: linear-gradient(90deg, rgb(255 140 0 / 5%), transparent);
+    border-radius:50%;
+    transform: rotate(10deg);
+    filter: blur(0.3px);
+  "></div>
+
+  <div style="
+    position:absolute;
+    width:140%;
+    height:1px;
+    top:140px;
+    left:-20%;
+    background: linear-gradient(90deg, rgb(255 165 0 / 6%), transparent);
+    border-radius:50%;
+    transform: rotate(-5deg);
+    filter: blur(0.5px);
+  "></div>
+
 </div>
-
 <!-- SOBRE -->
 <div class="container py-5 content" id="sobre" style="margin-top: 30px;">
+  
+<div class="profile-wrapper">
   <img src="assets/maira.jpg" class="profile-pic">
-  <h1 class="tech-glow">Olá, eu sou desenvolvedora</h1>
+  <span class="status-dot"></span>
+</div>
+
+
+  <h1 class="tech-glow"> <span class="olaEuSou">Olá, eu sou <br></span>desenvolvedora</h1>
   <p class="mt-3 col-md-8 mx-auto" style="text-align: justify;">
     Dedicada a <strong>UX, landing pages, sistemas de dados e aplicativos mobile com React Native/Expo</strong>. Transformo ideias e abstrações do mundo real em soluções digitais funcionais, com experiência em ambientes corporativos e industriais.
   </p>
 <button id="themeToggle" aria-label="Alternar tema">
-  <svg id="iconSun" viewBox="0 0 24 24" class="icon active">
-    <circle cx="12" cy="12" r="5"/>
-    <g stroke-width="2">
-      <line x1="12" y1="1" x2="12" y2="4"/>
-      <line x1="12" y1="20" x2="12" y2="23"/>
-      <line x1="1" y1="12" x2="4" y2="12"/>
-      <line x1="20" y1="12" x2="23" y2="12"/>
-      <line x1="4.5" y1="4.5" x2="6.8" y2="6.8"/>
-      <line x1="17.2" y1="17.2" x2="19.5" y2="19.5"/>
-      <line x1="17.2" y1="6.8" x2="19.5" y2="4.5"/>
-      <line x1="4.5" y1="19.5" x2="6.8" y2="17.2"/>
-    </g>
-  </svg>
+<svg id="iconSun" viewBox="0 0 24 24" class="icon active" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 2C9.243 2 7 4.243 7 7c0 2.243 1.343 4.156 3.25 5.063V15h3.5v-2.937C15.657 11.156 17 9.243 17 7c0-2.757-2.243-5-5-5z"/>
+  <rect x="10" y="17" width="4" height="4" rx="1"/>
+</svg>
+
 
   <svg id="iconMoon" viewBox="0 0 24 24" class="icon">
     <path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/>
   </svg>
  </button>
 
-  <div class="container py-1 "  >
+  <div class="container py-2 "  >
   </div>
   <p class="mb-1"></p>
-    <a class="contact-btn"
-    href="https://wa.me/5518997322160?text=Oi%20Maíra"
-    target="_blank">
-    Falar no WhatsApp
+    <a
+      href="https://wa.me/5518997322160?text=Oi%20Maíra"
+      target="_blank"
+      class="btn-whatsapp"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+      Vamos conversar
     </a>
 </div>
 
 </div>
 
 <!-- PORTFÓLIO -->
-<div class="container py-3" id="portfolio" style="margin-top:-30px;">
-  <h2 class="mb-1">Meus Projetos</h2>
+<div class="container py-3" id="portfolio" style="margin-top:-10px;">
+  <h4 class="mb-1 secaoTitulo">Meus Projetos</h4>
   <div class="projects-row mb-3" id="projectsRow1"></div>
   <div class="projects-row" id="projectsRow2"></div>
 </div>
 
 <!-- SKILLS -->
 <div class="container py-5 " id="skills" >
-<h2 class="mb-3  text-center">Skills</h2>
+<h4 class="mb-3  secaoTitulo">Skills</h4>
    <p class="mt-3 col-md-8 mx-auto" style="text-align: justify;">
    Aqui você pode ver as linguagens e ferramentas que mais uso no meu trabalho. 
     Cada fatia do gráfico representa o tempo e a frequência com que aplico cada tecnologia em meus projetos.
@@ -312,7 +423,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 
 <!-- FORMAÇÃO -->
 <div class="container py-5" id="formacao">
-  <h2 class="mb-4 text-center">Formação</h2>
+  <h4 class="mb-4 secaoTitulo">Formação</h4>
   
   <div class="row justify-content-center g-4">
 
@@ -345,7 +456,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
       <div class="card formacao-card">
         <div class="card-body">
           <h5 class="card-title text-formacao"><i class="fas fa-graduation-cap me-2"></i>Etec Profº Dr. Antônio Eufrásio de Toledo</h5>
-          <p class="card-text"><strong>Técnico em Administração</strong></p>
+          <p class="card-text"><strong><br> Técnico em Administração</strong> </p>
         </div>
       </div>
     </div>
@@ -356,7 +467,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
 
 <!-- EXPERIENCIA -->
 <div class="container py-2" id="experiencia">
-  <h2 class="mb-4 text-center">Experiência</h2>
+  <h4 class="mb-4 secaoTitulo">Experiência</h4>
   
   <div class="row justify-content-center g-4">
 
@@ -373,7 +484,7 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
       <div class="card formacao-card">
         <div class="card-body">
           <h5 class="card-title text-formacao"><i class="fas fa-briefcase me-2"></i>Programador de Sistemas de Informação</h5>
-          <p class="card-text"><strong>Infoss Sistemas para Internet LTDA</strong> </p>
+          <p class="card-text"><strong><br> Infoss Sistemas para Internet LTDA</strong> </p>
         </div>
       </div>
     </div>
@@ -393,16 +504,10 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
     <a class="contact-btn"
     href="https://wa.me/5518997322160?text=Oi%20Maíra"
     target="_blank">
-    Falar no WhatsApp
+     <i class="fa-brands fa-whatsapp"></i>
+     WhatsApp
     </a>
-  <div class="social-icons">
-   <a href="https://bit.ly/3YVBAf2" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/MairaSantoss" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://www.instagram.com/dev.mairagraziela?igsh=YzJhZnIybTV3d3J6" target="_blank"><i class="fab fa-instagram"></i></a>
-  </div>
 </div>
-
-<footer>© 2026 — Maíra Graziela dos Santos </footer>
 
 <!-- MODAL -->
 <div class="modal fade" id="projectModal" tabindex="-1">
@@ -418,12 +523,50 @@ footer { opacity:.6; font-size:14px; text-align:center; margin-top:50px;}
         </span>
       </div>
       <div class="modal-footer justify-content-between">
-        <button class="btn btn-outline-light" id="prevImage">&laquo; Anterior</button>
-        <button class="btn btn-outline-light" id="nextImage">Próxima &raquo;</button>
+        <button class="btn " id="prevImage">&laquo; Anterior</button>
+        <button class="btn " id="nextImage">Próxima &raquo;</button>
       </div>
     </div>
   </div>
 </div>
+
+<footer style="
+  background:#18191a;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding:28px 8%;
+  color:#fff;
+  font-family:Arial, sans-serif;
+   margin-top:60px;
+">
+  <div style="
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    flex-wrap:wrap;
+  ">
+    <!-- Informações Pessoais -->
+    <div style="flex:1; min-width:200px; margin-bottom:8px;">
+      <h3 style="font-size:18px; margin-bottom:6px;">Maíra Santos</h3>
+      <p style="font-size:14px; color:#cbd5e1; margin-bottom:4px;">Desenvolvedora Web & Mobile</p>
+      <span style="font-size:13px; color:#64748b;">São Paulo, Brasil</span>
+    </div>
+
+    <!-- Ícones Sociais -->
+    <div class="social-icons" style="flex:1; min-width:150px; margin-bottom:20px;">
+      <a href="https://bit.ly/3YVBAf2" target="_blank" style="color:#fff; font-size:20px;"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/MairaSantoss" target="_blank" style="color:#fff; font-size:20px;"><i class="fab fa-github"></i></a>
+      <a href="https://www.instagram.com/dev.mairagraziela?igsh=YzJhZnIybTV3d3J6" target="_blank" style="color:#fff; font-size:20px;"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div style="text-align:center; margin-top:20px; font-size:13px; color:#64748b;">
+    © 2026 — Maíra Graziela dos Santos
+  </div>
+</footer>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -497,7 +640,7 @@ projects.forEach((p, i) => {
   const shortDesc = p.description.length > 35 ? p.description.substring(0,35) + "…" : p.description;
   const card = `<div class="project-card" onclick="openModal(${i})">
     <img src="${p.images[0]}" alt="${p.title}">
-    <h6 class="mt-2">${p.title}</h6>
+    <h6 class="mt-2 project-titulo">${p.title}</h6>
     <p class="project-desc">${shortDesc}</p>
   </div>`;
   if(i < Math.ceil(projects.length / 2)) row1.innerHTML += card;
@@ -572,16 +715,30 @@ projectModal.addEventListener("hidden.bs.modal", () => {
 
 // === Chart.js ===
 new Chart(document.getElementById("skillsChart"), {
-  type: 'pie',
+  type: 'doughnut',
   data: {
     labels: ['HTML / CSS','JavaScript / jQuery','C#','PHP','React Native (Expo)','SQL'],
     datasets: [{
       data: [19,30,15,11,11,15],
-      backgroundColor: ['#E34F26','#F7DF1E','#9B4F96','#777BB4','#61DAFB','#2F855A']
+      backgroundColor: ['#E34F26','#F7DF1E','#9B4F96','#777BB4','#61DAFB','#2F855A'],
+      borderWidth: 0 // remove borda branca entre os setores
     }]
   },
-  options: { plugins: { legend: { labels: { color: '#9f9f9f' } } } }
+  options: {
+    cutout: '90%', // tamanho do buraco no meio
+    plugins: {
+      legend: {
+        position: 'bottom', // coloca legenda embaixo
+        labels: {
+          color: '#9f9f9f', // cor do texto da legenda
+          boxWidth: 20, // tamanho do quadradinho da legenda
+          padding: 15
+        }
+      }
+    }
+  }
 });
+
 
 // === Alternância de tema ===
 const toggle = document.getElementById("themeToggle");
@@ -601,17 +758,7 @@ toggle.addEventListener("click", () => {
   setTimeout(() => toggle.classList.remove("spinning"), 600);
 });
 
-const bgEffects = document.querySelector('.background-effects');
-const portfolio = document.getElementById('portfolio');
-window.addEventListener('scroll', () => {
-  const portfolioTop = portfolio.getBoundingClientRect().top;
 
-  if (portfolioTop <= window.innerHeight * 0.6) {
-    bgEffects.classList.add('hidden');
-  } else {
-    bgEffects.classList.remove('hidden');
-  }
-});
 
 
 document.addEventListener("click", function (event) {
@@ -850,5 +997,7 @@ document.addEventListener("click", function (event) {
 
 
 </script> -->
+
+
 </body>
 </html>
