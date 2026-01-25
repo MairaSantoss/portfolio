@@ -31,7 +31,7 @@ body { background: #0d0d0d; color: #bababa;;;; font-family:'Segoe UI',sans-serif
 .profile-pic {
   width:140px;
   height:140px;
-  border-radius:2px;
+  border-radius:50%;
   object-fit:cover;
   border:3px solid #f37120;
   padding:3.5px;
@@ -39,7 +39,7 @@ body { background: #0d0d0d; color: #bababa;;;; font-family:'Segoe UI',sans-serif
 }
 
 /* bolinha centralizada sobre a borda */
-/*
+
 .status-dot {
 position: absolute;
     width: 17px;
@@ -49,7 +49,7 @@ position: absolute;
     left: 80%;
     transform: translate(-40%, -155%);
     border: 3.5px solid #1a0f08;
-}*/
+}
 
 .sessaoSobremim{
   display:flex;
@@ -455,17 +455,18 @@ MENU -->
     <div class="col-12 col-lg-6 text-center mb-lg-0">
       <div class="profile-wrapper">
         <img src="assets/maira.jpg" class="profile-pic">
-        <!--<span class="status-dot"></span>-->
+        <span class="status-dot"></span>
       </div>
 
       <h1 class="tech-glow">
-        <span class="olaEuSou">Olá, eu sou a Maíra<br></span>desenvolvedora
+          <span class="olaEuSou">Olá, eu sou a Maíra<br></span>
+          <span id="typing-text"></span>
       </h1>
     </div>
 
     <div class="col-12 col-lg-6 text-center text-lg-start">
       <p class="mt-3 col-md-10 mx-auto mx-lg-0" style="text-align: justify;">
-        Dedicada a <strong>UX, landing pages, sistemas de dados e aplicativos</strong>.
+        Dedicada a <strong>landing pages, sistemas de dados e aplicativos</strong>.
         Transformo ideias e abstrações do mundo real em <strong>soluções digitais</strong> funcionais, com experiência em ambientes
         corporativos e industriais.
       </p>
@@ -492,36 +493,25 @@ MENU -->
 
 
 
-
-
-
-
-
-
-
-
 <div class="services-wrapper">
   <div class="services-grid">
 
     <!-- CARD 1 -->
     <div class="service-card">
 
-      <h4> <i style="margin-top: 8px;" class="fas fa-database service-icon"></i> Data</h4>
-   <p>Modelagem de dados, consultas SQL e elaboração de relatórios.</p>
-
-
+      <h4> <i style="margin-top: 8px;" class="fas fa-database service-icon"></i> Dados</h4>
+      <p>Modelagem de dados, consultas SQL e elaboração de relatórios.</p>
     </div>
-
     <!-- CARD 2 (DESTAQUE) -->
     <div class="service-card active">
       <h4> <i style="margin-top: 8px;" class="fas fa-pencil-ruler service-icon"></i> Design</h4>
-      <p>Desenvolvimento de produtos digitais pensando no todo: UX, UI e negócio.</p>
+       <p>Desenvolvimento de produtos digitais com visão completa: UX, UI e negócio.</p>
     </div>
 
     <!-- CARD 3 -->
     <div class="service-card">
-      <h4><i style="margin-top: 8px;" class="fas fa-code service-icon"></i> Software</h4>
-      <p>Construção de software funcional, escalável e bem estruturado.</p>
+      <h4><i style="margin-top: 8px;" class="fas fa-code service-icon"></i> Códigos</h4>
+      <p>Construção de códigos funcionais, com arquitetura escalável e bem estruturada.</p>
     </div>
 
   </div>
@@ -612,6 +602,12 @@ MENU -->
     grid-column:1 / -1;
     grid-row:auto;
   }
+
+  .sessaoSobremim .social-icons {
+    display: none;
+    gap: 15px;
+  }
+
 }
 </style>
 
@@ -890,6 +886,22 @@ MENU -->
 
 
 <script>
+
+     const text = "desenvolvedora";
+  const typingSpeed = 150; // velocidade em ms
+  let index = 0;
+
+  function type() {
+    if (index < text.length) {
+      document.getElementById("typing-text").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(type, typingSpeed);
+    }
+  }
+
+  // Começa a digitar quando a página carrega
+  window.onload = type;
+
 // === Projetos ===
 const projects = [
     {
