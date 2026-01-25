@@ -7,18 +7,19 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 html, body { overflow-x:hidden; width:100%; transition:0.3s; text-align:center; }
-body { background: #000; color:#848282; font-family:'Segoe UI',sans-serif; }
+body { background: #0d0d0d; color: #bababa;;;; font-family:'Segoe UI',sans-serif; }
 .tech-glow { color:#f37120; transition:0.3s; }
-.olaEuSou {color:#fff; transition:0.3s;}
-/* MENU */
+.olaEuSou {color:#fff; transition:0.3s; font-size: 1.6rem;}
+/* MENU 
 .navbar { background: rgb(20, 20, 20); transition:0.3s; }
 .navbar-light .nav-link { color:#fff; transition:0.3s; }
 .navbar-toggler-icon { filter:invert(1); }
+ */
 
 /* PROFILE */
 .profile-wrapper {
@@ -30,38 +31,97 @@ body { background: #000; color:#848282; font-family:'Segoe UI',sans-serif; }
 .profile-pic {
   width:140px;
   height:140px;
-  border-radius:50%;
+  border-radius:2px;
   object-fit:cover;
-  border:2px solid #f37120;
+  border:3px solid #f37120;
   padding:3.5px;
   display:block;
 }
 
 /* bolinha centralizada sobre a borda */
+/*
 .status-dot {
 position: absolute;
     width: 17px;
     height: 17px;
     border-radius: 50%;
     background: #22c55e;
-    /* top: 0px; */
     left: 80%;
-    transform: translate(-40%, -140%);
+    transform: translate(-40%, -155%);
     border: 3.5px solid #1a0f08;
+}*/
+
+.sessaoSobremim{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-top: 36px;
+}
+
+/* Ícones */
+.sessaoSobremim .social-icons{
+  display:flex;
+  gap:15px;
+}
+
+.sessaoSobremim .social-icons a{
+  font-size:22px;
+  color:#fff;
+  transition:.3s;
+}
+
+.sessaoSobremim .social-icons a:hover{
+  color:#f37120;
 }
 
 /* CARDS PROJETOS */
-.project-titulo{text-align: left; color: #ffffff; margin-top: 12px !important;}
-.project-card { background:rgb(37 36 36 / 70%); border-radius:25px; padding:15px; cursor:pointer; transition:.3s; flex:0 0 auto; width:220px; margin-right:15px;      margin-top: 25px;
-    margin-bottom: -6px; padding-bottom: 4px;}
-.project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(255 255 255 / 36%);}
+.project-titulo {text-align: left; color: #ffffff; margin-top: 12px !important;}
+.project-card {
+    background: #161616;
+    border: 1px solid #222;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: .3s;
+    flex: 0 0 auto;
+    width: 260px;
+    margin-right: 20px;
+    margin-top: 25px;
+    margin-bottom: -6px;
+    padding-bottom: 9px;}
+.project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(204 104 0 / 21%);}
 .projects-row { display:flex; overflow-x:auto; padding-bottom:15px; justify-content:left; }
 .projects-row::-webkit-scrollbar { display:none; }
-.project-card img { border-radius:12px; height:160px; object-fit:cover; width:100%; }
-.project-desc {     margin-top: -8px; font-size:0.85rem; color:#ccc; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+.project-card img { height:165px; object-fit:cover; width:100%; 
+  border-top-left-radius: 2px; border-top-right-radius: 2px;}
+.project-desc {     
+  text-align: left;
+    margin-bottom: 0;
+    margin-top: -6px;
+    font-size: 0.80rem;
+    color: #bdbdbd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 200;
+   }
+
+  .verMais {
+      margin-bottom: 0;
+      font-size: 9px;
+      margin-top: 11px;
+      color: #f37120;
+      text-align: left;
+      margin-right: 2px;
+      text-transform: uppercase;
+      font-weight: bolder;
+  }
+  .detalhesmodal{
+   padding: 11px;
+  }
 
 /* MODAL */
-.modal-content { background:#0e0e0e; border-radius:20px; border:1px solid #333; box-shadow:0 0 40px rgba(255,78,205,.15); transition:0.3s; padding: 2px !important;}
+.modal-content { background:#0e0e0e; border-radius:2px; border:1px solid #333; box-shadow:0 0 40px rgba(255,78,205,.15); transition:0.3s; padding: 2px !important;}
 .modal-header { border-bottom:none !important; display:flex; justify-content:space-between; align-items:center; padding-top: 6px;
  padding-bottom: 3px; }
 .modal-header .btn-close { filter:invert(1); transition:0.3s; }
@@ -78,23 +138,26 @@ position: absolute;
 .modal-description { margin-top:15px; max-height:150px; overflow-y:auto; text-align:left; color:#ccc; padding: 7px;}
 
 /* MODAL BOTÕES */
+
+.modal-footer{border-top: none;}
+
 .modal-footer .btn { 
   border:none; 
   color:#fff;
   font-weight:600; 
-  border-radius:20px; 
-  background-color:#ff7500
+  border-radius:2px; 
+  background-color:#f37120
 }
 
 /* CONTACT */
-.contact-btn { background: #10b908; padding:15px 30px; border-radius:30px; color:#fff; font-weight:600; text-decoration:none; margin:5px; display:inline-block; }
+.contact-btn { background: #10b908; padding:15px 30px; border-radius:2px; color:#fff; font-weight:600; text-decoration:none; margin:5px; display:inline-block; }
 
 .btn-whatsapp {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 10px 26px;
-  border-radius: 999px;
+  border-radius: 2px;
   background: #f37120;
   color: #e5e7eb;
   text-decoration: none;
@@ -119,17 +182,14 @@ position: absolute;
   position: fixed;
   bottom: 15px;
   right: 15px;
-
   width: 32px;
   height: 32px;
   border-radius: 50%;
   border: none;
-
-  background: linear-gradient(135deg, #ffffff, #ff9900);
+  background: #f37120;
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
   cursor: pointer;
   z-index: 9999;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,68 +221,88 @@ position: absolute;
   to { transform: rotate(360deg); }
 }
 
-/* tema claro */
-body.light-theme #themeToggle {
-  background: linear-gradient(135deg, #6c6c6c, #0e2354);
-}
+
 
 .titulomenu { color:#b8b8b8; }
 
 
-
-.background-effects{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height: 450px;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:-1;
-  background: linear-gradient(to bottom, rgb(255 136 0 / 16%) 0%, transparent 100%);
-}
-
-/* Cartões da Formação */
 .formacao-card {
-  background: rgb(37 36 36 / 70%);
-  border-radius: 13px;
+  background: #111;
+  border-radius: 2px;
   padding: 7px;
   transition: transform 0.3s, box-shadow 0.3s;
   color: #fff;
+   border: 1px solid #222;
 }
 
-/* Cores personalizadas */
-.card-text  { color: #848282; }      /* Vermelho elegante */
- /* Azul moderno */
-.text-formacao { color: #ffffff; font-size: 18px;}   
-/* Ícones */
+
+.card-text  { color: #848282; text-align: left;}      
+.text-formacao { color: #ffffff; font-size: 18px; text-align: left;}   
 .fas { vertical-align: middle; }
 
 
 .secaoTitulo{
-  text-align: center;
-
-        
-        font-weight: 700;
-        font-size: 19px;
-        color: #fff;
-        line-height: 2px;
-
+    text-align: left; 
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 2px;
+   
 }
 
 .navbar {
     overflow-x: hidden !important;
 }
 
+.divTituloSecao {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+   color: #fff ;
+}
 
+.palito {
+    width: 6px;
+    height: 25px;
+    background: #f37120;
+    border-radius: 4px;
+    margin-bottom: 7px;
+    margin-right: -8px;
+}
 
+.skill-tag {
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:13px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  justify-content:center;
+}
+.skill-tag i {
+  font-size:16px; /* tamanho fixo para todos os ícones */
+}
+
+.decoracaoFundo{
+  background-color:#0b0a0a; 
+  color:#fff;
+}
+
+.iconeFormacao{
+   color: #f37120;
+    padding: 10px;
+    background-color: #f371201c;
+    border-radius: 2px;
+    margin-bottom: 17px;
+}
 /* THEMES */
 .light-theme { background:#f5f5f5; color:#000; }
 .light-theme .navbar { background: rgb(255, 255, 255); }
 .light-theme .navbar-light .nav-link { color:#000; }
-.light-theme .secaoTitulo { color: #848484; }
+.light-theme .divTituloSecao { color: #000; }
 .light-theme .modal-content { background:#fff; color:#111; border:1px solid #ccc; }
-.light-theme .olaEuSou {color:#000;; transition:0.3s;}
+.light-theme .olaEuSou {color:#000;transition:0.3s;}
 .light-theme .social-icons a { color:#111; }
 .light-theme .titulomenu { color:#7c7c7c; }
 .light-theme .modal-header .btn-close { filter: invert(0); }
@@ -231,48 +311,102 @@ body.light-theme #themeToggle {
 .light-theme  .project-card { background: rgb(244 242 242 / 70%);
     border: 1px solid #c8c8c8;  }
 .light-theme .project-card:hover  { transform: translateY(-6px); box-shadow: 0 0 18px rgb(150 150 150);}
-.light-theme  .project-desc { color:#000000;  }
+.light-theme  .project-desc { color:#000000; }
 .light-theme .text-formacao { color: #444444; font-size: 18px; }   
 .light-theme .formacao-card {
   background:rgb(244 242 242 / 70%);
-  border-radius: 13px;
-  padding: 7px;
-  transition: transform 0.3s, box-shadow 0.3s;
   color: #fff;
+  border:1px solid #c8c8c8;
 }
 .light-theme .formacao-card:hover {
   transform: translateY(-5px);
   box-shadow: none;
 }
-.light-theme .background-effects{  background: linear-gradient(to bottom, rgb(225 177 122) 0%, transparent 100%);}
-.light-theme .status-dot {    border: 3.5px solid #eecdab;}
-
-/* RESPONSIVO */
-@media(max-width:800px){
-  .carousel img{height:auto;}
-  
-  .profile-pic{width:120px; height:120px;}
-  #modalImage{max-width:100%; max-height:50vh;}
-}
+/*.light-theme .status-dot {    border:3.5px solid #f5f4f2}*/
+.light-theme .decoracaoFundo {background-color:#ffffff00;}
 
 /* Responsivo */
 @media(max-width:768px){
+
+  .carousel img{height:auto;}
+  
+  .profile-pic{width:120px; height:120px;}
+   #modalImage{max-width:100%; max-height:50vh;}
+
+
+.wave-1 {
+    top: -80px;
+ }
+
+ .wave-2 {
+    top: -20px;
+}
+.wave-3 {
+    top: 45px;
+}
+.wave-4 {
+    top: 60px;
+}
   .col-md-6 { flex: 0 0 100%; max-width: 100%; }
 
-  .secaoTitulo{
-    text-align: left;
+  footer div {
+    flex-direction:column !important;
+    align-items:center !important;
+    text-align:center;
   }
 
-      footer div {
-      flex-direction:column !important;
-      align-items:center !important;
-      text-align:center;
+
+     .project-card {
+        width: 180px; /* menor proporcional */
+        margin-right: 12px;
+        margin-top: 18px;
+        margin-bottom: -4px;
+        padding-bottom: 4px;
     }
 
+    .project-card img {
+        height: 120px; /* proporcional à redução do card */
+    }
+
+    .project-desc {
+        font-size: 0.70rem;
+        margin-top: -8px;
+    }
+
+    .projects-row {
+        padding-bottom:10px;
+    }
+
+  .verMais {
+      margin-top: 6px;
+  }
+
+
+  .detalhesmodal{
+   padding: 11px;
+  }
+
+.project-titulo {
+    margin-top: 1px !important;
+}
+
+  .carousel-btn {
+    display: none !important;
+  }
 
 }
 
+@media(max-width:1200px){
+    .sessaoSobremim{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
 
+  .btn-whatsapp{
+    justify-content:center;
+  }
+}
 
 
 </style>
@@ -301,139 +435,313 @@ body.light-theme #themeToggle {
 </nav>
 MENU -->
 
-<!-- BACKGROUND DECORATIVO -->
-<div class="background-effects">
-
-  <!-- Ondas e curvas abstratas laranja -->
-  <div style="
-    position:absolute;
-    width:200%;
-    height:4px;
-    top:10px;
-    left:-50%;
-    background: linear-gradient(90deg, rgb(255 165 0 / 4%), rgba(255, 140, 0, 0.05));
-    border-radius:50%;
-    transform: rotate(15deg);
-    filter: blur(1px);
-  "></div>
-
-  <div style="
-    position:absolute;
-    width:180%;
-    height:2px;
-    top:50px;
-    left:-40%;
-    background: linear-gradient(90deg, rgb(255 165 0 / 4%), rgba(255, 140, 0, 0.05));
-    border-radius:50%;
-    transform: rotate(-7deg);
-    filter: blur(0.5px);
-  "></div>
-
-  <div style="
-    position:absolute;
-    width:160%;
-    height:2px;
-    top:100px;
-    left:-30%;
-    background: linear-gradient(90deg, rgb(255 140 0 / 5%), transparent);
-    border-radius:50%;
-    transform: rotate(10deg);
-    filter: blur(0.3px);
-  "></div>
-
-  <div style="
-    position:absolute;
-    width:140%;
-    height:1px;
-    top:140px;
-    left:-20%;
-    background: linear-gradient(90deg, rgb(255 165 0 / 6%), transparent);
-    border-radius:50%;
-    transform: rotate(-5deg);
-    filter: blur(0.5px);
-  "></div>
-
-</div>
-<!-- SOBRE -->
-<div class="container py-5 content" id="sobre" style="margin-top: 30px;">
-  
-<div class="profile-wrapper">
-  <img src="assets/maira.jpg" class="profile-pic">
-  <span class="status-dot"></span>
-</div>
-
-
-  <h1 class="tech-glow"> <span class="olaEuSou">Olá, eu sou <br></span>desenvolvedora</h1>
-  <p class="mt-3 col-md-8 mx-auto" style="text-align: justify;">
-    Dedicada a <strong>UX, landing pages, sistemas de dados e aplicativos mobile com React Native/Expo</strong>. Transformo ideias e abstrações do mundo real em soluções digitais funcionais, com experiência em ambientes corporativos e industriais.
-  </p>
-<button id="themeToggle" aria-label="Alternar tema">
-<svg id="iconSun" viewBox="0 0 24 24" class="icon active" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<!-- TROCAR TEMA -->
+<button id="themeToggle" aria-label="Alternar tema" style="display: none;">
+ <svg id="iconSun" viewBox="0 0 24 24" class="icon active" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M12 2C9.243 2 7 4.243 7 7c0 2.243 1.343 4.156 3.25 5.063V15h3.5v-2.937C15.657 11.156 17 9.243 17 7c0-2.757-2.243-5-5-5z"/>
   <rect x="10" y="17" width="4" height="4" rx="1"/>
-</svg>
-
-
+  </svg>
   <svg id="iconMoon" viewBox="0 0 24 24" class="icon">
     <path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/>
   </svg>
- </button>
+</button>
 
-  <div class="container py-2 "  >
-  </div>
-  <p class="mb-1"></p>
-    <a
-      href="https://wa.me/5518997322160?text=Oi%20Maíra"
-      target="_blank"
-      class="btn-whatsapp"
-    >
-      <i class="fa-brands fa-whatsapp"></i>
-      Vamos conversar
-    </a>
-</div>
+<!-- BACKGROUND DECORATIVO -->
 
-</div>
 
-<!-- PORTFÓLIO -->
-<div class="container py-3" id="portfolio" style="margin-top:-10px;">
-  <h4 class="mb-1 secaoTitulo">Meus Projetos</h4>
-  <div class="projects-row mb-3" id="projectsRow1"></div>
-  <div class="projects-row" id="projectsRow2"></div>
-</div>
-
-<!-- SKILLS -->
-<div class="container py-5 " id="skills" >
-<h4 class="mb-3  secaoTitulo">Skills</h4>
-   <p class="mt-3 col-md-8 mx-auto" style="text-align: justify;">
-   Aqui você pode ver as linguagens e ferramentas que mais uso no meu trabalho. 
-    Cada fatia do gráfico representa o tempo e a frequência com que aplico cada tecnologia em meus projetos.
-  </p>
-</div>
-
-<div class="container py-2" style="margin-top: -55px;">
-  <div class="row justify-content-center">
-    <div class="col-9 col-sm-8 col-md-6 col-lg-4">
-      <div class="chart-container" style="position: relative; width: 100%; height: 0; padding-bottom: 100%;">
-        <canvas id="skillsChart" style="position: absolute; top:0; left:0; width:100%; height:100%;"></canvas>
+<!-- SOBRE -->
+<div class="container py-4 content" id="sobre" style="margin-top: 30px; padding-bottom: 2rem !important;"> 
+  <div class="row align-items-center">
+    <div class="col-12 col-lg-6 text-center mb-lg-0">
+      <div class="profile-wrapper">
+        <img src="assets/maira.jpg" class="profile-pic">
+        <!--<span class="status-dot"></span>-->
       </div>
+
+      <h1 class="tech-glow">
+        <span class="olaEuSou">Olá, eu sou a Maíra<br></span>desenvolvedora
+      </h1>
+    </div>
+
+    <div class="col-12 col-lg-6 text-center text-lg-start">
+      <p class="mt-3 col-md-10 mx-auto mx-lg-0" style="text-align: justify;">
+        Dedicada a <strong>UX, landing pages, sistemas de dados e aplicativos</strong>.
+        Transformo ideias e abstrações do mundo real em <strong>soluções digitais</strong> funcionais, com experiência em ambientes
+        corporativos e industriais.
+      </p>
+
+      <div class="sessaoSobremim col-md-10 mx-auto mx-lg-0">
+
+        <a href="https://wa.me/5518997322160?text=Oi%20Maíra"
+           target="_blank"
+           class="btn-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> Vamos conversar
+        </a>
+
+        <div class="social-icons" style="margin-top: 1px;">
+          <a href="https://bit.ly/3YVBAf2" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/MairaSantoss" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/dev.mairagraziela" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </div>
 
 
+
+
+
+
+
+
+
+
+
+<div class="services-wrapper">
+  <div class="services-grid">
+
+    <!-- CARD 1 -->
+    <div class="service-card">
+
+      <h4> <i style="margin-top: 8px;" class="fas fa-database service-icon"></i> Data</h4>
+   <p>Modelagem de dados, consultas SQL e elaboração de relatórios.</p>
+
+
+    </div>
+
+    <!-- CARD 2 (DESTAQUE) -->
+    <div class="service-card active">
+      <h4> <i style="margin-top: 8px;" class="fas fa-pencil-ruler service-icon"></i> Design</h4>
+      <p>Desenvolvimento de produtos digitais pensando no todo: UX, UI e negócio.</p>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="service-card">
+      <h4><i style="margin-top: 8px;" class="fas fa-code service-icon"></i> Software</h4>
+      <p>Construção de software funcional, escalável e bem estruturado.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+.services-wrapper{
+  background:#0d0d0d;
+  padding:10px 20px;
+  color:#fff;
+}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  max-width:1100px;
+  margin:0 auto 50px;
+}
+
+.service-card{
+  background:#151515;
+  padding:15px;
+  border-radius:2px;
+  text-align:left;
+  transition:.3s;
+}
+
+.service-card:hover{
+  transform:translateY(-6px);
+}
+
+.service-card.active{
+  background:linear-gradient(160deg,#f37120,#f37120);
+}
+
+.service-icon{
+  font-size:25px;
+  margin-bottom:13px;
+  color:#f37120;
+}
+
+.service-card.active .service-icon{
+  color:#fff;
+}
+
+.service-card h3{
+  margin-bottom:10px;
+}
+
+.service-card p{
+  font-size:14px;
+  color:#ccc;
+  line-height:1.4;
+}
+
+.service-card.active p{
+  color:#f1f1f1;
+}
+
+.service-card a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:15px;
+  font-size:13px;
+  color:#f37120;
+  text-decoration:none;
+}
+
+.service-card.active a{
+  color:#fff;
+}
+
+
+/* RESPONSIVO */
+@media(max-width:900px){
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat.big{
+    grid-column:1 / -1;
+    grid-row:auto;
+  }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- PORTFÓLIO -->
+ <div  class="decoracaoFundo" style="padding-top:20px; padding-bottom:20px; text-align:center; font-family:'Segoe UI',sans-serif;">
+ 
+<div class="container py-3" id="portfolio" style="margin-top:-10px; position:relative;">
+   <div class="mb-1 divTituloSecao">
+    <div class="palito"></div>
+    <h4 clas="secaoTitulo">
+      Meus projetos
+    </h4>
+  </div>
+
+  <!-- Setas carrossel row1 -->
+  <button onclick="document.getElementById('projectsRow1').scrollBy({left:-280, behavior:'smooth'})"
+          style="line-height: 0px; font-size: 50px; position:absolute; top:30%; left:-35px; transform:translateY(-50%); z-index:10; background:#97979700; border:none; border-radius:50%;cursor:pointer; color:#655f5f;"
+          class="carousel-btn">&#8249;</button>
+
+  <button onclick="document.getElementById('projectsRow1').scrollBy({left:280, behavior:'smooth'})"
+          style="line-height: 0px;font-size: 50px; position:absolute; top:30%; right:-35px; transform:translateY(-50%); z-index:10; background:#97979700; border:none; border-radius:50%; cursor:pointer; color:#655f5f;"
+          class="carousel-btn">&#8250;</button>
+
+  <div class="projects-row mb-3" id="projectsRow1"></div>
+
+  <!-- Setas carrossel row2 -->
+  <button onclick="document.getElementById('projectsRow2').scrollBy({left:-280, behavior:'smooth'})"
+          style="line-height: 0px;font-size: 50px; position:absolute; top:calc(50% + 160px); left:-35px; transform:translateY(-50%); z-index:10; background:#97979700;; border:none; border-radius:50%;  cursor:pointer; color:#655f5f;"
+          class="carousel-btn">&#8249;</button>
+
+  <button onclick="document.getElementById('projectsRow2').scrollBy({left:280, behavior:'smooth'})"
+          style="line-height: 0px;font-size: 50px; position:absolute; top:calc(50% + 160px); right:-35px; transform:translateY(-50%); z-index:10; background:#97979700; border:none; border-radius:50%; cursor:pointer; color:#655f5f;"
+          class="carousel-btn">&#8250;</button>
+
+  <div class="projects-row" id="projectsRow2"></div>
+</div>
+</div>
+
+
+<!-- Skills -->
+<div class="container py-4" id="Skills">
+  <div class="mb-4 divTituloSecao">
+    <div class="palito"></div>
+    <h4 class="secaoTitulo">Skills</h4>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+
+    <!-- Web & JS -->
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+      <div class="formacao-card" style="width:100%; max-width:360px; padding:20px;  ">
+        <h3 style="color:#f37120; margin-bottom:15px; text-align: left;">Web</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+          <span class="skill-tag" style="background:#E34F26;">HTML5</span>
+          <span class="skill-tag" style="background:#1572B6;">CSS3</span>
+          <span class="skill-tag" style="background:#F7DF1E; color:#000;">JavaScript</span>
+          <span class="skill-tag" style="background:#9B4F96;">jQuery</span>
+          <span class="skill-tag" style="background:#61DAFB; color:#000;">Chart.js</span>
+          <span class="skill-tag" style="background:#2F855A;">FullCalendar</span>
+          <span class="skill-tag" style="background:#001262; ">DataTables</span>
+          <span class="skill-tag" style="background:#ff007a; ">Figma</span>
+          <span class="skill-tag" style="background:#7813d5; ">Bootstrap</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backend -->
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+      <div class="formacao-card" style=" width:100%; max-width:360px; padding:20px; ">
+        <h3 style="color:#c77bd4; margin-bottom:15px;text-align: left;">Backend</h3>
+        <div class="card-text">
+          <p><strong>Linguagem:</strong> C# & PHP</p>
+          <p><strong>Paradigma:</strong> POO</p>
+          <p><strong>Banco:</strong> SQL Server / MySQL</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+      <div class="formacao-card" style=" width:100%; max-width:360px; padding:20px;">
+        <h3 style="color:#61dafb; margin-bottom:15px;text-align: left;">Mobile</h3>
+        <div class="card-text">
+          <p><i style="color: #0095ff;"  class="fab fa-react"></i> React Native</p>
+          <p><i style="color: #ffee00;" class="fas fa-bolt"></i> Expo</p>
+          <p><i style="color: #ff007a;" class="fas fa-paint-brush"></i> UX Design</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
 <!-- FORMAÇÃO -->
 <div class="container py-5" id="formacao">
-  <h4 class="mb-4 secaoTitulo">Formação</h4>
-  
+  <div class="mb-4 divTituloSecao">
+    <div class="palito"></div>
+    <h4 clas="secaoTitulo">
+      Formação
+    </h4>
+  </div>
   <div class="row justify-content-center g-4">
 
     <!-- Fatec -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4">
       <div class="card formacao-card">
         <div class="card-body">
-          <h5 class="card-title text-formacao"><i class="fas fa-university me-2"></i>Fatec Presidente Prudente</h5>
+          <h5 class=" text-formacao"><i class="fas fa-university me-2 iconeFormacao"></i><br>Fatec Presidente Prudente</h5>
           <p class="card-text">Curso Superior de Tecnologia (CST) em <strong>Análise e Desenvolvimento de Sistemas</strong>
-        — <a href="https://drive.google.com/file/d/12CgYoKPgIWmtWM34eAa44hQns94OHTU8/view?usp=sharing" target="_blank">diploma</a>
+        </p>
+        <p class="card-text" >
+            <a style="color:#f37120;  text-decoration: none;" href="https://drive.google.com/file/d/12CgYoKPgIWmtWM34eAa44hQns94OHTU8/view?usp=sharing" target="_blank">Ver diploma <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a>
         </p>
         </div>
       </div>
@@ -443,10 +751,13 @@ MENU -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4">
       <div class="card formacao-card">
         <div class="card-body">
-          <h5 class="card-title text-formacao"><i class="fas fa-certificate me-2"></i>Plataforma DevMedia</h5>
+          <h5 class=" text-formacao"><i class="fas fa-certificate me-2 iconeFormacao"></i><br>Plataforma DevMedia</h5>
           <p class="card-text">
-            Conhecimento de desenvolvimento mobile com <strong>React Native</strong> — <a href="https://www.devmedia.com.br/certificado/tecnologia/react-native/maira-graziela-dos-santos" target="_blank">credencial</a>
+            Conhecimento de desenvolvimento mobile com <strong>React Native</strong>  
           </p>
+          <p class="card-text" class="card-text" >
+          <a style="color:#f37120;text-decoration: none;" href="https://www.devmedia.com.br/certificado/tecnologia/react-native/maira-graziela-dos-santos" target="_blank">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px;"></i></a>
+         </p>
         </div>
       </div>
     </div>
@@ -455,8 +766,8 @@ MENU -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4">
       <div class="card formacao-card">
         <div class="card-body">
-          <h5 class="card-title text-formacao"><i class="fas fa-graduation-cap me-2"></i>Etec Profº Dr. Antônio Eufrásio de Toledo</h5>
-          <p class="card-text"><strong><br> Técnico em Administração</strong> </p>
+          <h5 class=" text-formacao"><i class="fas fa-graduation-cap me-2 iconeFormacao"></i><br>Etec Profº Dr. Antônio E. de Toledo</h5>
+          <p class="card-text"><strong><br> Técnico em Administração</strong> </p>  <p class="card-text">Concluído</p>
         </div>
       </div>
     </div>
@@ -467,24 +778,31 @@ MENU -->
 
 <!-- EXPERIENCIA -->
 <div class="container py-2" id="experiencia">
-  <h4 class="mb-4 secaoTitulo">Experiência</h4>
-  
-  <div class="row justify-content-center g-4">
+    <div class="mb-4 divTituloSecao">
+    <div class="palito"></div>
+    <h4 clas="secaoTitulo">
+      Experiência
+    </h4>
+  </div>
+  <div class="row justify-content-left g-4">
 
-    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-5">
       <div class="card formacao-card">
         <div class="card-body">
-          <h5 class="card-title text-formacao"><i class="fas fa-briefcase me-2"></i>Analista Desenvolvimento de Sistemas Júnior</h5>
+          <h5 class=" text-formacao"><i style="color: #575656; font-size: 22px;" class="fas fa-briefcase me-2"></i> <span style="color: #f37120;">Atual </span><br><br>  Analista Desenvolvimento de Sistemas Júnior</h5>
           <p class="card-text"><strong>Vip Administração e Assessoria LTDA</strong> </p>
         </div>
       </div>
     </div>
 
-    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-5">
       <div class="card formacao-card">
         <div class="card-body">
-          <h5 class="card-title text-formacao"><i class="fas fa-briefcase me-2"></i>Programador de Sistemas de Informação</h5>
-          <p class="card-text"><strong><br> Infoss Sistemas para Internet LTDA</strong> </p>
+          <h5 class="text-formacao">
+          <i style="color: #575656; font-size: 22px;" class="fas fa-rotate-left me-2"></i>
+          <span style="color: #848282;" >Anterior </span> <br>  <br>  Programador de Sistemas de Informação</h5> 
+          <p class="card-text"><strong> Infoss Sistemas para Internet LTDA</strong> </p>
+         
         </div>
       </div>
     </div>
@@ -499,7 +817,7 @@ MENU -->
   <div class="container py-5 " id="contato" >
 
   </div>
-  <h2>Vamos conversar?</h2>
+  <h2 class="olaEuSou">Vamos conversar?</h2>
   <p class="mb-4"></p>
     <a class="contact-btn"
     href="https://wa.me/5518997322160?text=Oi%20Maíra"
@@ -549,7 +867,7 @@ MENU -->
     <div style="flex:1; min-width:200px; margin-bottom:8px;">
       <h3 style="font-size:18px; margin-bottom:6px;">Maíra Santos</h3>
       <p style="font-size:14px; color:#cbd5e1; margin-bottom:4px;">Desenvolvedora Web & Mobile</p>
-      <span style="font-size:13px; color:#64748b;">São Paulo, Brasil</span>
+      <span style="font-size:13px; color:#5b5b5b;">São Paulo, Brasil</span>
     </div>
 
     <!-- Ícones Sociais -->
@@ -561,7 +879,7 @@ MENU -->
   </div>
 
   <!-- Copyright -->
-  <div style="text-align:center; margin-top:20px; font-size:13px; color:#64748b;">
+  <div style="text-align:center; margin-top:20px; font-size:13px; color:#5b5b5b;">
     © 2026 — Maíra Graziela dos Santos
   </div>
 </footer>
@@ -569,7 +887,7 @@ MENU -->
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 <script>
 // === Projetos ===
@@ -640,8 +958,11 @@ projects.forEach((p, i) => {
   const shortDesc = p.description.length > 35 ? p.description.substring(0,35) + "…" : p.description;
   const card = `<div class="project-card" onclick="openModal(${i})">
     <img src="${p.images[0]}" alt="${p.title}">
-    <h6 class="mt-2 project-titulo">${p.title}</h6>
-    <p class="project-desc">${shortDesc}</p>
+    <div class="detalhesmodal">
+      <h6 class="mt-2 project-titulo">${p.title}</h6>
+      <p class="project-desc">${shortDesc}</p>
+      <p class="verMais">ver mais <i class="fas fa-arrow-right" style="color: #f37120; font-size: 9px; margin-left: 3px;"></i></p>
+    </div>
   </div>`;
   if(i < Math.ceil(projects.length / 2)) row1.innerHTML += card;
   else row2.innerHTML += card;
@@ -710,34 +1031,9 @@ nextBtn.addEventListener("click", () => {
 
 // Mostrar botão de tema ao fechar modal
 projectModal.addEventListener("hidden.bs.modal", () => {
-  themeToggle.style.display = "flex";
+  //themeToggle.style.display = "flex";
 });
 
-// === Chart.js ===
-new Chart(document.getElementById("skillsChart"), {
-  type: 'doughnut',
-  data: {
-    labels: ['HTML / CSS','JavaScript / jQuery','C#','PHP','React Native (Expo)','SQL'],
-    datasets: [{
-      data: [19,30,15,11,11,15],
-      backgroundColor: ['#E34F26','#F7DF1E','#9B4F96','#777BB4','#61DAFB','#2F855A'],
-      borderWidth: 0 // remove borda branca entre os setores
-    }]
-  },
-  options: {
-    cutout: '90%', // tamanho do buraco no meio
-    plugins: {
-      legend: {
-        position: 'bottom', // coloca legenda embaixo
-        labels: {
-          color: '#9f9f9f', // cor do texto da legenda
-          boxWidth: 20, // tamanho do quadradinho da legenda
-          padding: 15
-        }
-      }
-    }
-  }
-});
 
 
 // === Alternância de tema ===
@@ -760,243 +1056,7 @@ toggle.addEventListener("click", () => {
 
 
 
-
-document.addEventListener("click", function (event) {
-  const navMenu = document.getElementById("navMenu");
-  const toggler = document.querySelector(".navbar-toggler");
-
-  // se o menu estiver aberto
-  if (navMenu.classList.contains("show")) {
-    // se clicou fora do menu e fora do botão
-    if (!navMenu.contains(event.target) && !toggler.contains(event.target)) {
-      const bsCollapse = new bootstrap.Collapse(navMenu);
-      bsCollapse.hide();
-    }
-  }
-});
-
-const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-const navMenu = document.getElementById('navMenu');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    // Se o menu estiver aberto (colapsado), fecha ele
-    if (navMenu.classList.contains('show')) {
-      const bsCollapse = new bootstrap.Collapse(navMenu);
-      bsCollapse.hide();
-    }
-  });
-});
 </script>
-
-<!--<script>
-const projects = [
-    {
-    title:"Ticket Service", 
-    description:`Agora ficou fácil organizar toda a demanda de serviços! O Ticket Service facilita a rotina de criadores e prestadores de serviços, oferecendo um Sistema Web e um Aplicativo que funciona online e offline.  
-    Com ele, é possível criar, executar e finalizar ordens de serviço, além de acompanhar todo o processo do início ao fim.
-    `, 
-    images:["assets/projeto5/img1.png","assets/projeto5/img2.png", "assets/projeto5/img3.png", "assets/projeto5/img4.png",  "assets/projeto5/img5.png",  "assets/projeto5/img6.png"]
-  },
-  {
-    title:"Promoção ARK3D", 
-    description:"O laboratório ARK3D, especializado na produção de próteses dentárias para clínicas e consultórios odontológicos, promoveu sua empresa e seus serviços por meio de uma página na internet. A ação atraiu novos clientes ao oferecer um crédito de R$ 400,00 para a primeira contratação.", 
-    images:["assets/projeto2/img1.png","assets/projeto2/img2.png"]
-  },
-  {
-    title:"Go Eventos", 
-    description:`A Go Eventos reúne, em um só lugar, as melhores opções de entretenimento da região — do show pago ao barzinho gratuito com música ao vivo.
-    O aplicativo conta com categorias como entretenimento infantil, esportes, feiras e eventos culturais. Além disso, oferece dois tipos de perfil: o do comerciante, que divulga seus eventos, e o do convidado, formado pelos potenciais clientes.`, 
-    images:["assets/projeto3/img1.png","assets/projeto3/img2.png", "assets/projeto3/img3.png"]
-  },
-  {
-    title:"App Gligose", 
-    description:`Aplicativo que permite o agendamento de atendimentos e a comunicação direta com pacientes. Ele exibe o histórico de agendamentos e armazena os registros de glicose, facilitando o acompanhamento da saúde ao longo do tempo. Desenvolvido especialmente para pessoas com diabetes que monitoram a glicose com frequência, o aplicativo ajuda a manter o controle, a organização e a continuidade do cuidado.`, 
-    images:["assets/projeto4/img1.png","assets/projeto4/img2.png"]
-  },
-
-  {
-    title:"Auto Escola", 
-    description:`Design de interface do Site, desenvolvido para uma auto escola. O site funciona como uma estratégia para expandir os canais de comunicação e marketing da empresa, além de aumentar a visibilidade nos resultados de pesquisa do Google. `, 
-    images:["assets/projeto6/img1.png","assets/projeto6/img2.png"]
-  },
-  {
-    title:"Meu TCC - Agrotec", 
-    description:`Um pouco das telas e funcionalidades do sistema que foi desenvolvido no meu TCC. A Rede Social é um módulo independente de um portfólio de sistema maior denominado Agrotec. O Agrotec é um ERP, que visa atender as necessidades da produção e comercialização de produtos da agropecuária, para isso, definiu-se três módulos: Rede Social, Produção e Marketplace. Meu foco de desenvolvimento foi a Rede Social, ela tem o intuito de integrar pessoas através da comunicação, prestação de serviços, compartilhamento de ideias e um auto marketing profissional.`, 
-    images:["assets/projeto7/img1.jpg","assets/projeto7/img2.jpg", "assets/projeto7/img3.jpg", "assets/projeto7/img4.jpg",  "assets/projeto7/img5.jpg",  "assets/projeto7/img6.jpg"]
-  },
-  {
-    title:"Cartão de Visita", 
-    description:`Cartão de visitas para a área da saúde`, 
-    images:["assets/projeto8/img1.jpg"]
-  },
-  {
-    title:"Anamnesis", 
-    description:`Design de interface de um aplicativo que realiza a triagem de sintomas e direciona o usuário para médicos especializados. O app também funciona como cartão de visitas digital dos médicos, fornecendo detalhes para contato de forma prática e rápida.`, 
-    images:["assets/projeto9/img1.jpg"]
-  },
-    {
-   title:"Caléndario", 
-   description:
-   `Calendário para gestão do tempo e organização, desenvolvido com a biblioteca JavaScript FullCalendar.
-    Destaques do projeto:
-    - Interface Intuitiva: navegue facilmente pelos meses, semanas e dias.
-    - Eventos Personalizados: crie, edite e exclua eventos diretamente no calendário.
-    - Design Responsivo: funciona perfeitamente em qualquer tamanho de tela.
-    - Integração Simples: fácil de implementar e manter.  
-    `, 
-   images:["assets/projeto1/img1.png","assets/projeto1/img2.png"]
-  }
-];
-
-const row1 = document.getElementById("projectsRow1");
-const row2 = document.getElementById("projectsRow2");
-
-projects.forEach((p,i)=>{
-  const shortDesc = p.description.length > 35 ? p.description.substring(0,35) + "…" : p.description;
-  const card = `<div class="project-card" onclick="openModal(${i})">
-    <img src="${p.images[0]}" alt="${p.title}">
-    <h6 class="mt-2">${p.title}</h6>
-    <p class="project-desc">${shortDesc}</p>
-  </div>`;
-  if(i<Math.ceil(projects.length/2)) row1.innerHTML += card;
-  else row2.innerHTML += card;
-});
-
-let currentProjectIndex = 0;
-let currentImageIndex = 0;
-
-function openModal(i){
-  currentProjectIndex = i;
-  currentImageIndex = 0;
-  document.getElementById("themeToggle").style.display = "none";
-  showModalImage();
-  new bootstrap.Modal(document.getElementById("projectModal")).show();
-}
-
-
-const projectModal = document.getElementById("projectModal");
-projectModal.addEventListener("hidden.bs.modal", () => {
-  // aqui o modal JÁ fechou
-  document.getElementById("themeToggle").style.display = "flex"; 
-});
-
-
-
-function showModalImage(){
-  const project = projects[currentProjectIndex];
-  document.getElementById("modalImage").src = project.images[currentImageIndex];
-  document.getElementById("modalTitle").innerText = project.title;
-  document.getElementById("modalDescription").innerText = project.description;
-
-  const prevBtn = document.getElementById("prevImage");
-  const nextBtn = document.getElementById("nextImage");
-
-  // mostrar / esconder botões conforme quantidade de imagens
-    if (project.images.length <= 1) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-    } else {
-      prevBtn.style.display = "flex"; // ou "block"
-      nextBtn.style.display = "flex";
-    }
-
-}
-
-// Navegação dentro do modal
-document.getElementById("prevImage").addEventListener("click", ()=>{
-  const project = projects[currentProjectIndex];
-  currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
-  showModalImage();
-});
-document.getElementById("nextImage").addEventListener("click", ()=>{
-  const project = projects[currentProjectIndex];
-  currentImageIndex = (currentImageIndex + 1) % project.images.length;
-  showModalImage();
-});
-
-// Chart de habilidades
-new Chart(document.getElementById("skillsChart"), {
-  type: 'pie',
-  data: {
-labels: [
-  'HTML / CSS',
-  'JavaScript / jQuery',
-  'C#',
-  'PHP',
-  'React Native (Expo)',
-  'SQL'
-],
-datasets: [{
-  data: [19, 30, 15, 11, 11, 15],
-  backgroundColor: [
-    '#E34F26', // HTML/CSS - laranja tech
-    '#F7DF1E', // JS - amarelo oficial
-    '#9B4F96', // C# - roxo Microsoft
-    '#777BB4', // PHP - azul arroxeado
-    '#61DAFB', // React - azul claro
-    '#2F855A'  // SQL - verde confiável
-  ]
-}]
-
-  },
-  options: { plugins: { legend: { labels: { color: '#9f9f9f' } } } }
-});
-
-// Alternância de tema
-const toggle = document.getElementById("themeToggle");
-const sun = document.getElementById("iconSun");
-const moon = document.getElementById("iconMoon");
-
-toggle.addEventListener("click", () => {
-  toggle.classList.add("spinning");
-
-  setTimeout(() => {
-    document.body.classList.toggle("light-theme");
-
-    const isLight = document.body.classList.contains("light-theme");
-
-    sun.classList.toggle("active", !isLight);
-    moon.classList.toggle("active", isLight);
-  }, 300); // troca no meio da rotação
-
-  setTimeout(() => {
-    toggle.classList.remove("spinning");
-  }, 600);
-});
-
-
-
-const bgEffects = document.querySelector('.background-effects');
-const portfolio = document.getElementById('portfolio');
-window.addEventListener('scroll', () => {
-  const portfolioTop = portfolio.getBoundingClientRect().top;
-
-  if (portfolioTop <= window.innerHeight * 0.6) {
-    bgEffects.classList.add('hidden');
-  } else {
-    bgEffects.classList.remove('hidden');
-  }
-});
-
-
-
-document.addEventListener("click", function (event) {
-  const navMenu = document.getElementById("navMenu");
-  const toggler = document.querySelector(".navbar-toggler");
-
-  // se o menu estiver aberto
-  if (navMenu.classList.contains("show")) {
-    // se clicou fora do menu e fora do botão
-    if (!navMenu.contains(event.target) && !toggler.contains(event.target)) {
-      const bsCollapse = new bootstrap.Collapse(navMenu);
-      bsCollapse.hide();
-    }
-  }
-});
-
-
-</script> -->
 
 
 </body>
