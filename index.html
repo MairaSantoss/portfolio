@@ -30,8 +30,8 @@ body { background-color: #0d0d0d !important; color: #bababa; font-family:'Segoe 
 }
 
 .profile-pic {
-  width:140px;
-  height:140px;
+  width:160px;
+  height:160px;
   border-radius:50%;
   object-fit:cover;
   border:3px solid #f37120;
@@ -170,7 +170,7 @@ position: absolute;
 .btn-whatsapp i {
   font-size: 16px;
    color: #e5e7eb;
-; /* verde WhatsApp */
+
 }
 
 
@@ -250,9 +250,10 @@ position: absolute;
    
 }
 
+/*
 .navbar {
     overflow-x: hidden !important;
-}
+}*/
 
 .divTituloSecao {
     display: flex;
@@ -282,7 +283,7 @@ position: absolute;
   justify-content:center;
 }
 .skill-tag i {
-  font-size:16px; /* tamanho fixo para todos os ícones */
+  font-size:16px; 
 }
 
 .decoracaoFundo{
@@ -334,20 +335,6 @@ position: absolute;
   .profile-pic{width:120px; height:120px;}
    #modalImage{max-width:100%; max-height:50vh;}
 
-
-.wave-1 {
-    top: -80px;
- }
-
- .wave-2 {
-    top: -20px;
-}
-.wave-3 {
-    top: 45px;
-}
-.wave-4 {
-    top: 60px;
-}
   .col-md-6 { flex: 0 0 100%; max-width: 100%; }
 
   footer div {
@@ -393,6 +380,31 @@ position: absolute;
 
   .carousel-btn {
     display: none !important;
+  }
+
+
+  .status-dot {
+    transform: translate(-40%, -145%);
+  }
+
+  .olaEuSou {
+    font-size: 1.2rem;
+  }
+   #typing-text{
+     font-size: 1.8rem;
+   }
+
+
+   .tech-glow {
+     margin-top: 5px; 
+    }
+
+  .cardHabil, h4.cardHabil i,   div.formacao-card h3{
+      font-size: 19px;
+    }
+
+  .service-card{
+    padding: 11px;
   }
 
 }
@@ -459,7 +471,7 @@ MENU -->
         <span class="status-dot"></span>
       </div>
 
-      <h1 class="tech-glow">
+      <h1 class="tech-glow" style="margin-top:  -11px;">
           <span class="olaEuSou">Olá, eu sou a Maíra<br></span>
           <span id="typing-text"></span>
       </h1>
@@ -500,18 +512,18 @@ MENU -->
     <!-- CARD 1 -->
     <div class="service-card">
 
-      <h4> <i style="margin-top: 8px;" class="fas fa-database service-icon"></i> Dados</h4>
+      <h4 class="cardHabil"> <i style="margin-top: 8px;" class="fas fa-database service-icon"></i> Dados</h4>
       <p>Modelagem de dados, consultas SQL e elaboração de relatórios.</p>
     </div>
     <!-- CARD 2 (DESTAQUE) -->
     <div class="service-card active">
-      <h4> <i style="margin-top: 8px;" class="fas fa-pencil-ruler service-icon"></i> Design</h4>
+      <h4 class="cardHabil" > <i style="margin-top: 8px;" class="fas fa-pencil-ruler service-icon"></i> Design</h4>
        <p>Desenvolvimento de produtos digitais com visão completa: UX, UI e negócio.</p>
     </div>
 
     <!-- CARD 3 -->
     <div class="service-card">
-      <h4><i style="margin-top: 8px;" class="fas fa-code service-icon"></i> Códigos</h4>
+      <h4 class="cardHabil"><i style="margin-top: 8px;" class="fas fa-code service-icon"></i> Códigos</h4>
       <p>Construção de códigos funcionais, com arquitetura escalável e bem estruturada.</p>
     </div>
 
