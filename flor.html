@@ -1,160 +1,137 @@
-<html lang="pt-BR"><head>
-<meta charset="UTF-8">
-<title>Flor Laranja</title>
 
-<style>
-  body {
-    margin: 0;
-    background: #0f0f0f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
 
-  .flower {
-    position: relative;
-    width: 120px;
-    height: 260px;
-    transform-origin: bottom center;
-  }
 
-  /* PÉTALAS */
-  .petals {
-    position: relative;
-    width: 120px;
-    height: 120px;
-  }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor Laranja</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  .petals span {
-    position: absolute;
-    width: 50px;
-    height: 80px;
-    background: linear-gradient(180deg, #ff9a00, #ff6a00);
-    border-radius: 50%;
-    top: 20px;
-    left: 35px;
-    transform-origin: bottom center;
-    box-shadow: 0 0 15px rgba(255, 122, 0, 0.4);
-  }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: white;
+        }
 
-  .petals span:nth-child(1) { transform: rotate(0deg); }
-  .petals span:nth-child(2) { transform: rotate(45deg); }
-  .petals span:nth-child(3) { transform: rotate(90deg); }
-  .petals span:nth-child(4) { transform: rotate(135deg); }
-  .petals span:nth-child(5) { transform: rotate(180deg); }
-  .petals span:nth-child(6) { transform: rotate(225deg); }
-  .petals span:nth-child(7) { transform: rotate(270deg); }
-  .petals span:nth-child(8) { transform: rotate(315deg); }
+        svg {
+            width: 300px;
+            height: 300px;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+        }
 
-  /* CENTRO */
-  .center {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, #6b3a00, #3a1a00);
-    border-radius: 50%;
-    top: 40px;
-    left: 40px;
-    z-index: 2;
-  }
+        .petal {
+            fill: #ff9933;
+            stroke: #ff6600;
+            stroke-width: 2;
+            animation: bloom 1.5s ease-out forwards;
+            transform-origin: 150px 150px;
+            opacity: 0;
+        }
 
-  /* RAMO */
-  .stem {
-    position: absolute;
-    width: 8px;
-    height: 140px;
-    background: linear-gradient(#2ecc71, #1e8449);
-    left: 56px;
-    top: 120px;
-    border-radius: 10px;
-  }
+        .petal:nth-child(1) { animation-delay: 0s; }
+        .petal:nth-child(2) { animation-delay: 0.15s; }
+        .petal:nth-child(3) { animation-delay: 0.3s; }
+        .petal:nth-child(4) { animation-delay: 0.45s; }
+        .petal:nth-child(5) { animation-delay: 0.6s; }
+        .petal:nth-child(6) { animation-delay: 0.75s; }
 
-  /* FOLHAS */
-  .leaf {
-    position: absolute;
-    width: 60px;
-    height: 30px;
-    background: linear-gradient(135deg, #2ecc71, #27ae60);
-    border-radius: 60px 0;
-    top: 170px;
-  }
+        .center {
+            fill: #ff6600;
+            animation: centerGrow 1s ease-out 0.9s forwards;
+            opacity: 0;
+        }
 
-  .leaf.left {
-    left: -25px;
-    transform: rotate(-30deg);
-  }
+        .stem {
+            stroke: #228b22;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
 
-  .leaf.right {
-    right: -25px;
-    transform: rotate(210deg);
-  }
-</style>
+        .leaf {
+            fill: #32cd32;
+            stroke: #228b22;
+            stroke-width: 1.5;
+            animation: leafAppear 1s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes centerGrow {
+            0% {
+                r: 0;
+                opacity: 0;
+            }
+            100% {
+                r: 30;
+                opacity: 1;
+            }
+        }
+
+        @keyframes leafAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Caule -->
+        <line class="stem" x1="150" y1="180" x2="150" y2="280" />
+        
+        <!-- Folhas -->
+        <ellipse class="leaf" cx="110" cy="220" rx="35" ry="20" transform="rotate(-45 110 220)" />
+        <ellipse class="leaf" cx="190" cy="240" rx="35" ry="20" transform="rotate(45 190 240)" />
+        
+        <!-- Pétalas -->
+        <ellipse class="petal" cx="150" cy="80" rx="25" ry="50" />
+        <ellipse class="petal" cx="150" cy="80" rx="25" ry="50" transform="rotate(60 150 150)" />
+        <ellipse class="petal" cx="150" cy="80" rx="25" ry="50" transform="rotate(120 150 150)" />
+        <ellipse class="petal" cx="150" cy="80" rx="25" ry="50" transform="rotate(180 150 150)" />
+        <ellipse class="petal" cx="150" cy="80" rx="25" ry="50" transform="rotate(240 150 150)" />
+        <ellipse class="petal" cx="150" cy="80" rx="25" ry="50" transform="rotate(300 150 150)" />
+        
+        <!-- Centro da flor -->
+        <circle class="center" cx="150" cy="150" r="0" />
+    </svg>
 
-<div class="flower" style="transform: rotate(-1.96275deg);">
-  <div class="petals">
-    <span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span>
-  </div>
+    <script>
+        // Animação contínua suave
+        const svg = document.querySelector('svg');
+        let time = 0;
 
-  <div class="center"></div>
-  <div class="stem"></div>
-  <div class="leaf left"></div>
-  <div class="leaf right"></div>
-</div>
+        function animate() {
+            time += 0.01;
+            const sway = Math.sin(time * 0.5) * 2;
+            svg.style.transform = `rotate(${sway}deg)`;
+            requestAnimationFrame(animate);
+        }
 
-<script>
-  const flower = document.querySelector('.flower');
-  let angle = 0;
-
-  setInterval(() => {
-    angle += 0.05;
-    flower.style.transform =
-      `rotate(${Math.sin(angle) * 2}deg)`;
-  }, 30);
-</script>
-
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-
-
-</body></html>
+        animate();
+    </script>
+</body>
+</html>
